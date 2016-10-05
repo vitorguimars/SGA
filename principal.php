@@ -56,6 +56,9 @@
                         <a class="page-scroll" href="#about">Cadastros</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="#ramais">Ramais</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" href="#download">Portfolio</a>
                     </li>
                     <li>
@@ -82,8 +85,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">SGA</h1>
-                        <p class="intro-text">SISTEMA DE GESTÃO DE ATENDIMENTOS .
-                            <br>Faculdade Senai de Tecnologia.</p>
+                        <p class="intro-text">SISTEMA DE GESTÃO DE ATENDIMENTOS
+                            <br>Faculdade Senai de Tecnologia</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -93,7 +96,7 @@
         </div>
     </header>
 
-    <!-- About Section -->
+    <!-- Cadastros Section -->
     <section id="about" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -104,6 +107,18 @@
             </div>
         </div>
     </section>
+    <!-- Ramais Section -->
+    <section id="ramais" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About Grayscale</h2>
+                <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+                <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
+                <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Download Section -->
     <section id="download" class="content-section text-center">
@@ -169,7 +184,7 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; Your Website 2016</p>
+            <p>Copyright &copy; www.senairs.com.br/faculdade - 2016</p>
         </div>
     </footer>
 

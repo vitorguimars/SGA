@@ -46,3 +46,10 @@ form-login .form-control:focus{
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+.table{
+    width: 1000px;
+ text-align: center;
+ border: 1px;
+ border-color:#FFFFFF;
+    
+}

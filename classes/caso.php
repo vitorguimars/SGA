@@ -1,13 +1,13 @@
 <?php
 
-class caso{
+class Caso{
   private $idCaso;
   private $nomeCaso;
-
-    function __construct($idCaso, $nomeCaso){
-  $this->setIdCaso = $idCaso;
-  $this->setNomeCaso = $nomeCaso;
-}
+  
+  function __construct(){
+      
+  }
+           
 
 function setIdCaso($idCaso){
   $this->idCaso = $idCaso;

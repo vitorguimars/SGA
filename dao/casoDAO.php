@@ -1,71 +1,67 @@
 <?php
 
-require_once '../banco/BancoPDO.php';
+require_once './banco/BancoPDO.php';
+require_once './classes/caso.php';
 
 //estabelecimento da herança
-class casoDAO extends BancoPDO{
+class casoDAO{
     
+    public static $conexao = null;
+
     public function __construct() {
-        $this->conexao = BancoPDO::conexao();
-        
+       
     }
-    
+
     //metodo de inserção
-    public function inserir($caso){
-        try{
+    public function inserir($caso) {
+        try {
             $stm = $this->conexao->prepare("INSERT INTO tbcasos(nomecaso)VALUE(?)");
             echo $caso->nomeCaso;
-            
-            $stm->bindValue(1,$caso->nomeCaso);
-            
-            if($stm->execute()){
+
+            $stm->bindValue(1, $caso->nomeCaso);
+
+            if ($stm->execute()) {
                 echo 'Dados inseridos com sucesso!';
             }
         } catch (Exception $ex) {
-            echo 'Erro: '.$ex->getMessage();
+            echo 'Erro: ' . $ex->getMessage();
+        }
+    }
 
+    public function visualizar() {
+        try {
+            $sql = "SELECT * FROM tbcasos;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
         }
-        
     }
-    
-    public function visualizar($caso, $combo, $filtro){
-        try{
-        if($filtro !=""){
-            $stm = $this->conexao->prepare("SELECT * FROM tbcasos WHERE idcaso = ?");
-            $stm->bindParam(1,$filtro, PDO::PARAM_INT);
-    }else{
-        $stm = $this->conexao->prepare("SELECT * FROM tbcasos");
-        
+
+    private function populaCasos($row) {
+        $caso = new Caso();
+
+        $caso->setIdCaso($row->idCaso);
+        $caso->setNomeCaso($row->nomeCaso);
+        return $caso;
     }
-    if($stm->execute()){
-        if($combo == ""){
-            $tabela = "<table><tr>"
-                            ."<td>CODIGO</td>"
-                            ."<td>CASO</td>"
-                            ."</tr>";
-            
-                    while ($dados = $stm->fetch(PDO::FETCH_OBJ)){
-                        $tabela .="<tr>"
-                                 ."<td>".$dados->idCaso."</td>"
-                                 ."<td>".$dados->nomeCaso."</td>"
-                                 ."</tr>";
-                    }
-                    $tabela .="<\table>";
-                    echo $tabela;
-        }
-        
-    }
-    
-    }catch(PDOException $ex){
-        echo 'Erro: '.$ex->getMessage();
-    }
-        
-    } 
+
 }
 ?>
 
-    
-    
+
+
 
 
 

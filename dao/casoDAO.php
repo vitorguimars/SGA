@@ -41,14 +41,23 @@ class casoDAO{
 
                 $stm->execute();
                 $con = null;
-                return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+               // print_r($resultado);
+                echo "<select class='form-control'>";
+                foreach($resultado as $dados){
+                    $nomecaso = $dados["nomeCaso"];
+                    //echo $nomecaso;
+                   echo "<option value='$nomecaso'>".$nomecaso."</option>";
+                }
+               echo "</select>";
+               // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
             }
             return null;
         } catch (Exception $e) {
             echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
         }
     }
-
+   /*
     private function populaCasos($row) {
         $caso = new Caso();
 
@@ -56,6 +65,7 @@ class casoDAO{
         $caso->setNomeCaso($row->nomeCaso);
         return $caso;
     }
+   */
 
 }
 ?>

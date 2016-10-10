@@ -1,59 +1,55 @@
 <?php
 
-require_once '../banco/BancoPDO.php';
+require_once './banco/BancoPDO.php';
 
-class creditoDAO extends BancoPDO{
+class creditoDAO{
     function __construct() {
-        $this->conexao = BancoPDO::conexao();   
+
     }
     
     //Metodo inserir
     
-    public function inserir($credito){
-        try{
+    public function inserir($credito)
+    {
+        try {
             $stm = $this->conexao->prepare("INSERT INTO tbcreditos(idcredito, numcredito, desconto)VALUE(?,?,?)");
             echo $credito->numcredito;
-            
-            $stm->bindValue(1,$credito->idcredito);
-            $stm->bindValue(2,$credito->numcredito);
-            $stm->bindValue(3,$credito->desconto);
-            
-            if($stm->execute()){
+
+            $stm->bindValue(1, $credito->idcredito);
+            $stm->bindValue(2, $credito->numcredito);
+            $stm->bindValue(3, $credito->desconto);
+
+            if ($stm->execute()) {
                 echo "Dados inseridos com sucesso! <br>";
             }
 
         } catch (Exception $ex) {
-            echo "Erro: ".$ex->getMessage();
+            echo "Erro: " . $ex->getMessage();
 
         }
+    }
         
-        function visualisar($idCredito = "", $combo = ""){
+        public function visualisar(){
             try{
-                if($idCredito == ""){
-                    $stm =  $this->conexao->prepare("SELECT * FROM tbcreditos WHERE idcredito = ?");
-                    $stm->bindParam(1,$idcredito, PDO::PARAM_INT);
-                }else{
-                    $stm =  $this->conexao->prepare("SELECT * FROM tbcreditos");
-                }
-                if($stm->execute()){
-                    if(combo ==""){
-                        $tabela = "<table><tr>"
-                                ."<td>CÓDIGO</td>"
-                                ."td>NÚMERO DE CRÉDITOS</td>"
-                                ."<td>DESCONTO %</td>"
-                                ."</tr>";
-                        
-                        while ($dados = $stm->fetch(PDO::FETCH_OBJ)){
-                            $tabela .="<tr>"
-                                    ."<td>".$dados->idcredito."</td>"
-                                    ."<td>".$dados->numcredito."</td>"
-                                    ."<td>".$dados->desconto."</td>"
-                                    ."</tr>";
-                        }
-                        $tabela .="<\table>";
-                       echo $tabela;
+                $sql = "SELECT * FROM tbcreditos ORDER BY numcredito";
+                $con = new BancoPDO();
+                $con = $con->conexao();
+                if($stm = $con->prepare($sql)){
+                   $stm->execute();
+                   $con = null;
+                   $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                   // print_r($resultado);
+                    echo "<select class = 'form-control'>";
+                    foreach($resultado as $dados){
+                        $numCredito = $dados["numCredito"];
+                        echo $numCredito;
+                        echo"<option value='$numCredito'>".$numCredito ."</option>";
                     }
-                }
+                    echo "</select>";
+
+                    }
+                return null;
+
             } catch (Exception $ex) {
                 echo "Erro: ".$ex->getMessage();
 
@@ -61,7 +57,7 @@ class creditoDAO extends BancoPDO{
         }
     
         
-    }
+
 
     
 }

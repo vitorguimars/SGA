@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 
     <head>
 
@@ -168,13 +168,40 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>SIMULADOR</h2>
 
-                    <?php
-                    require_once '../SGA/dao/casoDAO.php';
-                    $casoDAO = new casoDAO();
-                    $teste = $casoDAO->visualizar();
+                    <div>
+                        <table class="table table-condensed">
+                            <tbody>
+                            <tr>
+                                <td>Tabela de Preços <br> Matriculas <?php date_default_timezone_set('UTC');
+                                     echo date("Y")?></td>
+                                <td>Valor Mensal Crédito</td>
+                                <td>0,00</td>
+                                <td>Valor Mensal 20 Creditos</td>
+                                <td>0,00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Valor Semestral Créditos</td>
+                                <td>0,00</td>
+                                <td>Valor Semestral 20 Créditos</td>
+                                <td>0,00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
 
-                    print_r($teste);
-                    ?>
+                        </table>
+
+
+                    </div>
+
+
+
 
                     <table class="table table-condensed">
                         <thead>
@@ -192,10 +219,21 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    Valor Normal
+                                    <?php
+                                    require_once '../SGA/dao/casoDAO.php';
+                                    $casoDAO = new casoDAO();
+                                    $teste = $casoDAO->visualizar();
+
+                                    //  print_r($teste);
+                                    ?>
                                 </td>
                                 <td>
-                                    20
+                                    <?php
+                                    require_once '../SGA/dao/creditoDAO.php>';
+                                    $creditoDAO = new creditoDAO();
+                                    $comboCredito = $creditoDAO->visualisar();
+                                    //print_r($comboCredito);
+                                    ?>
                                 </td>
                                 <td>0,0 %</td>
                                 <td>1.015,00</td>
@@ -207,12 +245,13 @@
                             </tr>
                         </tbody>
                     </table>
+                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Simular</a>
                 </div>
             </div>
         </section>
 
         <!-- Map Section -->
-        <div id="map"></div>
+       <!-- <div id="map"></div>  -->
 
         <!-- Footer -->
         <footer>

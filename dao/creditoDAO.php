@@ -39,11 +39,29 @@ class creditoDAO{
                    $con = null;
                    $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
                    // print_r($resultado);
-                    echo "<select class = 'form-control'>";
+                    echo "
+                        <script>
+                           function changeFunc() {
+                                var selectBox = document.getElementById('selectBox');
+                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+                                document.getElementById('valor').innerHTML = selectedValue;
+}
+                        </script>
+
+                    ";
+
+                    echo "<select class = 'form-control' id='selectBox' onchange='changeFunc();'>";
+
+
+
                     foreach($resultado as $dados){
                         $numCredito = $dados["numCredito"];
+                        $i = 0;
+                        $id = "opcao" . $i;
                         echo $numCredito;
-                        echo"<option value='$numCredito'>".$numCredito ."</option>";
+                        echo"<option name='opcoes' >".$numCredito ."</option>";
+                        $i++;
                     }
                     echo "</select>";
 

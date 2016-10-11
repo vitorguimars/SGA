@@ -3,11 +3,15 @@
 
     <head>
 
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+
+
+        <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
 
         <title>SGA - Sitema de Gestão de Atendimentos</title>
 
@@ -166,7 +170,7 @@
         <section id="simulador" class="container content-section text-center">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>SIMULADOR</h2>
+                    <h2>SIMULADOR DE DESCONTO</h2>
 
                     <div>
                         <table class="table table-condensed">
@@ -197,7 +201,28 @@
 
                         </table>
 
+                        <table  class="table table-condensed">
+                            <thead>
+                            <tr>
+                                <th>Casos</th>
+                                <th>Créditos</th>
+                                <th>Desconto</th>
+                                <th>Val. Parc. de 1 a 6</th>
+                                <th>Total Parc.</th>
+                                <th>Desconto a vista ref. 6 parc.</th>
+                                <th>Total a vista</th>
+                                <th>Desc. R$ a vista</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                               <td>Valor Normal</td>
+                                <td id="valor">4</td>
+                                <td>0,00%</td>
+                            </tr>
+                            </tbody>
 
+                        </table>
                     </div>
 
 
@@ -245,7 +270,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Simular</a>
+                    <a onclick="alteraCredito()" class="btn btn-default btn-lg">Simular</a>
                 </div>
             </div>
         </section>

@@ -45,7 +45,7 @@ class casoDAO{
                // print_r($resultado);
                 echo "<select class='form-control'>";
                 foreach($resultado as $dados){
-                    $nomecaso = $dados["nomeCaso"];
+                    $nomecaso = $dados["nomecaso"];
                     //echo $nomecaso;
                    echo "<option value='$nomecaso'>".$nomecaso."</option>";
                 }

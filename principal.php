@@ -90,8 +90,8 @@
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
                             <h1 class="brand-heading">SGA</h1>
-                            <p class="intro-text">SISTEMA DE GESTÃO DE ATENDIMENTOS
-                                <br>Faculdade Senai de Tecnologia</p>
+                            <p class="intro-text">SISTEMA DE GESTÃO DE ATENDIMENTOS</p>
+                                <!--<br>Faculdade Senai de Tecnologia</p> -->
                             <a href="#about" class="btn btn-circle page-scroll">
                                 <i class="fa fa-angle-double-down animated"></i>
                             </a>
@@ -173,22 +173,48 @@
                     <h2>SIMULADOR DE DESCONTO</h2>
 
                     <div>
-                        <table class="table table-condensed">
+                        <table class="table table-bordered table-responsive">
                             <tbody>
                             <tr>
                                 <td>Tabela de Preços <br> Matriculas <?php date_default_timezone_set('UTC');
                                      echo date("Y")?></td>
                                 <td>Valor Mensal Crédito</td>
-                                <td>0,00</td>
+                                <td>
+                                    <?php
+                                    require_once'../sga/dao/creditoDAO.php';
+                                    $creditoDao = new creditoDAO();
+                                    $valorSemestral = $creditoDao->vMensal();
+                                    ?></td>
                                 <td>Valor Mensal 20 Creditos</td>
-                                <td>0,00</td>
+                                <td>
+                                    <?php
+                                    require_once'../SGA/dao/creditoDAO.php';
+                                    $creditoDao = new creditoDAO();
+                                    $totalCurso = $creditoDao->vMensal_20();
+
+
+                                    ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>Valor Semestral Créditos</td>
-                                <td>0,00</td>
+                                <td>
+                                    <?php
+                                    require_once'../sga/dao/creditoDAO.php';
+                                    $creditoDao = new creditoDAO();
+                                    $valorSemestral = $creditoDao->vSemestral();
+                                    ?>
+                                </td>
                                 <td>Valor Semestral 20 Créditos</td>
-                                <td>0,00</td>
+                                <td>
+                                    <?php
+                                    require_once'../SGA/dao/creditoDAO.php';
+                                    $creditoDao = new creditoDAO();
+                                    $totalCurso = $creditoDao->vSemestral_20();
+
+                                    ?>
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -201,7 +227,7 @@
 
                         </table>
 
-                        <table  class="table table-condensed">
+                        <table  class="table table-bordered table-responsive">
                             <thead>
                             <tr>
                                 <th>Casos</th>
@@ -228,7 +254,7 @@
 
 
 
-                    <table class="table table-condensed">
+                    <table class="table table-responsive">
                         <thead>
                             <tr>
                                 <th>Casos</th>

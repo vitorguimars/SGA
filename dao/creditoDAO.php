@@ -31,7 +31,7 @@ class creditoDAO{
         
         public function visualisar(){
             try{
-                $sql = "SELECT * FROM tbcreditos ORDER BY numcredito";
+                $sql = "SELECT * FROM tbcreditos ORDER BY qtdecredito";
                 $con = new BancoPDO();
                 $con = $con->conexao();
                 if($stm = $con->prepare($sql)){
@@ -56,7 +56,7 @@ class creditoDAO{
 
 
                     foreach($resultado as $dados){
-                        $numCredito = $dados["numCredito"];
+                        $numCredito = $dados["qtdecredito"];
                         $i = 0;
                         $id = "opcao" . $i;
                         echo $numCredito;
@@ -73,11 +73,91 @@ class creditoDAO{
 
             }
         }
-    
-        
+    public function vSemestral_20(){
+        try{
+            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+            if($stm = $con->prepare($sql)){
+                $stm->execute();
+                $con = null;
+                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
+                    echo "R$: {$linha['valorparametro']}";
 
 
-    
+               // print_r($resultado);
+
+
+            }
+
+        }catch (Exception $ex){
+            echo "Erro: " .$ex->getMessage();
+
+        }
+    }
+    public function vMensal_20(){
+        try{
+            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+            if($stm = $con->prepare($sql)) {
+                $stm->execute();
+                $con = null;
+                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
+                echo "R$ ".number_format($linha['valorparametro']/6, 2,'.','') ;
+            }
+        }catch (Exception $ex){
+            echo "Erro: " .$ex->getMessage();
+        }
+
+    }
+
+    public function vSemestral(){
+        try{
+            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+            if($stm = $con->prepare($sql)) {
+                $stm->execute();
+                $con = null;
+                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
+                echo "R$ ".number_format($linha['valorparametro']/20, 2,'.','') ;
+            }
+        }catch (Exception $ex){
+            echo "Erro: " .$ex->getMessage();
+        }
+
+    }
+
+    public function vMensal(){
+        try{
+            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+            if($stm = $con->prepare($sql)) {
+                $stm->execute();
+                $con = null;
+                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
+                echo "R$ ".number_format($linha['valorparametro']/(20*6), 2,'.','') ;
+            }
+        }catch (Exception $ex){
+            echo "Erro: " .$ex->getMessage();
+        }
+
+    }
+    public function simular($caso, $credito){
+        try{
+
+
+        }catch (Exception $ex){
+            echo "Erro: " .$ex->getMessage();
+        }
+    }
+
 }
 
 

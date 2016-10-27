@@ -12,13 +12,14 @@ class BancoPDO{
   
 
   // metodo de conexão com a base de dados
+
   public function conexao(){
        $usuario = "root";
-       $senha = "usbw";
+       $senha = "";
 
     try{
      
-           $this->con = new PDO('mysql:host=localhost;port=3307;dbname=dbsga;', $usuario, $senha);
+           $this->con = new PDO('mysql:host=localhost;port=3306;dbname=dbsga;', $usuario, $senha);
 
           // para que os erros de exceção sejam obrigatoriamente mostrados
           $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -8,7 +8,9 @@
 
 class Desconto{
     private $id;
-    private $desconto;
+    private $desconto1;
+    private $desconto2;
+
 
 
     function __construct(){
@@ -21,12 +23,20 @@ class Desconto{
     function setId($id){
         $this->id = $id;
     }
-    function getDesconto(){
-        return $this->desconto;
+    function getDesconto1(){
+        return $this->desconto1;
     }
-    function setDesconto($desconto){
-        $this->desconto = $desconto;
+    function setDesconto1($desc1){
+        $this->desconto1 = $desc1;
     }
+
+    function getDesconto2(){
+        return $this->desconto2;
+    }
+    function setDesconto2($desc2){
+        $this->desconto2 = $desc2;
+    }
+
 
 
 }

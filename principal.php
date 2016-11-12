@@ -169,11 +169,14 @@
         <!-- Simulador Section -->
         <section id="simulador" class="container content-section text-center">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-6 col-lg-offset-1">
+
+                    <div class="container text-center" >
                     <h2>SIMULADOR DE DESCONTO</h2>
+                        </div>
 
                     <div>
-                        <table class="table table-bordered table-responsive">
+                        <table class="table table-bordered table-responsive"">
                             <tbody>
                             <tr>
                                 <td>Tabela de Preços <br> Matriculas <?php date_default_timezone_set('UTC');
@@ -181,16 +184,16 @@
                                 <td>Valor Mensal Crédito</td>
                                 <td>
                                     <?php
-                                    require_once'../sga/dao/creditoDAO.php';
-                                    $creditoDao = new creditoDAO();
-                                    $valorSemestral = $creditoDao->vMensal();
+                                    require_once'../sga/dao/categoriaDAO.php';
+                                    $categoriaDao = new categoriaDAO();
+                                    $valorSemestral = $categoriaDao->vMensal();
                                     ?></td>
                                 <td>Valor Mensal 20 Creditos</td>
                                 <td>
                                     <?php
-                                    require_once'../SGA/dao/creditoDAO.php';
-                                    $creditoDao = new creditoDAO();
-                                    $totalCurso = $creditoDao->vMensal_20();
+                                    require_once'../sga/dao/categoriaDAO.php';
+                                    $categoriaDaoDao = new categoriaDAO();
+                                    $totalCurso = $categoriaDao->vMensal_20();
 
 
                                     ?>
@@ -201,17 +204,17 @@
                                 <td>Valor Semestral Créditos</td>
                                 <td>
                                     <?php
-                                    require_once'../sga/dao/creditoDAO.php';
-                                    $creditoDao = new creditoDAO();
-                                    $valorSemestral = $creditoDao->vSemestral();
+                                    require_once'../sga/dao/categoriaDAO.php';
+                                    $categoriaDao = new categoriaDAO();
+                                    $valorSemestral = $categoriaDao->vSemestral();
                                     ?>
                                 </td>
                                 <td>Valor Semestral 20 Créditos</td>
                                 <td>
                                     <?php
-                                    require_once'../SGA/dao/creditoDAO.php';
-                                    $creditoDao = new creditoDAO();
-                                    $totalCurso = $creditoDao->vSemestral_20();
+                                    require_once'../sga/dao/categoriaDAO.php';
+                                    $categoriaDao = new categoriaDAO();
+                                    $totalCurso = $categoriaDao->vSemestral_20();
 
                                     ?>
                                 </td>
@@ -226,9 +229,12 @@
                             </tbody>
 
                         </table>
-
+                        <div <div class="col-lg-8 col-lg-offset-7">
+                        <h5>Valores normais sem desconto</h5>
+                            </div>
+                            <div>
                         <table  class="table table-bordered table-responsive">
-                            <thead>
+                            <tbody>
                             <tr>
                                 <th>Casos</th>
                                 <th>Créditos</th>
@@ -239,54 +245,130 @@
                                 <th>Total a vista</th>
                                 <th>Desc. R$ a vista</th>
                             </tr>
-                            </thead>
+                            </tbody>
                             <tbody>
                             <tr>
                                <td>Valor Normal</td>
                                 <td id="valor">4</td>
                                 <td>0,00%</td>
+                                <td id="valor1a6"><?php
+                                    require_once '../sga/dao/descontoDAO.php';
+                                    $descontoDao = new DescontoDAO();
+                                    $desc1 = $descontoDao->vParcela1a6();
+
+                                    echo "
+                        <script>
+                           function parcelas1a6() {
+                                var qtdCredito = document.getElementById('valor').textContent;
+                                var valor = $desc1;
+
+
+                                document.getElementById('valor1a6').innerHTML = 'R$ ' + qtdCredito * valor;
+                            }
+                        </script>
+
+                    ";
+
+                                    ?></td>
+                                <td id="tParcelado">
+                                    <script>
+                                        function tParcelado(){
+                                            var parcelas1a6 = document.getElementById("valor1a6").textContent;
+                                            var parcelas = parcelas1a6.replace("R$ ", "");
+                                            var tParcelado = parcelas * 6;
+
+                                            document.getElementById("tParcelado").innerHTML = "R$ " + tParcelado;
+                                        }
+                                    </script>
+                                </td>
+                                <td >6,0 %</td>
+                                <td id="tAvista">
+                                    <script>
+                                        // $porc = tParcelado() * 6 / 100
+                                        // $resultado = tParcelado - $porc
+                                        function tAvista(){
+                                            var porc = document.getElementById("tParcelado").textContent.replace("R$ ","") * 6 / 100;
+                                            var resultado = document.getElementById("tParcelado").textContent.replace("R$ ","") - porc;
+
+                                            document.getElementById("tAvista").innerHTML = "R$ " + resultado;
+                                        }
+                                    </script>
+
+                                </td>
+                                <td>6,0 %</td>
                             </tr>
                             </tbody>
 
                         </table>
                     </div>
 
-
-
-
-                    <table class="table table-responsive">
-                        <thead>
+                        <div <div class="col-lg-8 col-lg-offset-7">
+                        <h5>Valores com desconto</h5>
+                            </div>
+                    <div>
+                    <table class="table table-bordered table-responsive">
+                        <tbody>
                             <tr>
-                                <th>Casos</th>
+                                <td>Casos</td>
                                 <th>Créditos</th>
                                 <th>Desconto</th>
-                                <th>Val. Parc. de 1 a 6</th>
+                                <th>Val. Parc.1 a 6</th>
                                 <th>Total Parc.</th>
                                 <th>Desconto a vista ref. 6 parc.</th>
                                 <th>Total a vista</th>
                                 <th>Desc. R$ a vista</th>
                             </tr>
-                        </thead>
+                        </tbody>
                         <tbody>
                             <tr>
                                 <td>
                                     <?php
-                                    require_once '../SGA/dao/casoDAO.php';
+                                    require_once '../sga/dao/casoDAO.php';
                                     $casoDAO = new casoDAO();
-                                    $teste = $casoDAO->visualizar();
+                                    $caso = $casoDAO->visualizar();
 
                                     //  print_r($teste);
                                     ?>
                                 </td>
                                 <td>
                                     <?php
-                                    require_once '../SGA/dao/creditoDAO.php>';
+                                    require_once '../sga/dao/creditoDAO.php>';
                                     $creditoDAO = new creditoDAO();
+                                    echo "
+                                 <script>
+                                 function changeFunc() {
+                                var selectBox = document.getElementById('selectBox');
+                                var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+
+                                document.getElementById('valor').innerHTML = selectedValue;
+}
+                        </script>
+
+                    ";
                                     $comboCredito = $creditoDAO->visualisar();
                                     //print_r($comboCredito);
                                     ?>
                                 </td>
-                                <td>0,0 %</td>
+                                <td>
+                                    <?php
+                                    require_once '../sga/dao/descontoDAO.php';
+                                    require_once '../sga/classes/credito.php';
+                                    require_once '../sga/classes/caso.php';
+
+                                    $descontoDao = new DescontoDAO();
+
+
+
+                                    $caso = new Caso();
+                                    $caso->setIdCaso(1);
+
+                                    $credito = new Credito();
+                                    $credito->setIdCredito(5);
+
+                                    $desconto = $descontoDao->getDesconto($caso, $credito);
+                                    echo $desconto;
+                                    ?>
+                                </td>
                                 <td>1.015,00</td>
                                 <td>4.263,00</td>
                                 <td>6,0 %</td>
@@ -296,7 +378,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <a onclick="alteraCredito()" class="btn btn-default btn-lg">Simular</a>
+                        </div>
+                    <a onclick="parcelas1a6(); tParcelado(); tAvista();" class="btn btn-default btn-lg col-lg-offset-7">Simular</a>
                 </div>
             </div>
         </section>

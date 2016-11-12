@@ -57,7 +57,10 @@ class casoDAO{
             echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
         }
     }
-   /*
+
+
+
+
     private function populaCasos($row) {
         $caso = new Caso();
 
@@ -65,7 +68,7 @@ class casoDAO{
         $caso->setNomeCaso($row->nomeCaso);
         return $caso;
     }
-   */
+
 
 }
 ?>

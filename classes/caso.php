@@ -9,25 +9,25 @@ class Caso{
   }
            
 
-function setIdCaso($idCaso){
-  $this->idCaso = $idCaso;
+function setIdCaso($id){
+  $this->idCaso = $id;
 }
 
 function getIdCaso(){
-  return $this->$idCaso;
+  return $this->idCaso;
 }
 
-function setNomeCaso($nomeCaso){
-  $this->nomeCaso = $nomeCaso;
+function setNomeCaso($nome){
+  $this->nomeCaso = $nome;
 }
 
 function getNomeCaso(){
-  $this->$nomeCaso;
+ return $this->nomeCaso;
 }
 
 function __toString(){
   return "O caso de id {$this->idCaso}. possui o nome de " .
-          $this->$nomeCaso;
+    $this->nomeCaso;
 }
 
 

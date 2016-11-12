@@ -12,12 +12,14 @@ class creditoDAO{
     public function inserir($credito)
     {
         try {
-            $stm = $this->conexao->prepare("INSERT INTO tbcreditos(idcredito, numcredito, desconto)VALUE(?,?,?)");
+            $stm = $this->conexao->prepare("INSERT INTO tbcreditos(id, numcredito, desconto)VALUE(?,?,?)");
             echo $credito->numcredito;
 
-            $stm->bindValue(1, $credito->idcredito);
+            $stm->bindValue(1, $credito->id);
             $stm->bindValue(2, $credito->numcredito);
             $stm->bindValue(3, $credito->desconto);
+
+
 
             if ($stm->execute()) {
                 echo "Dados inseridos com sucesso! <br>";
@@ -73,82 +75,47 @@ class creditoDAO{
 
             }
         }
-    public function vSemestral_20(){
-        try{
-            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
 
+
+    public function getCreditos(){
+        try{
+            $sql = "SELECT * FROM tbcreditos ORDER BY qtdecredito";
             $con = new BancoPDO();
             $con = $con->conexao();
             if($stm = $con->prepare($sql)){
                 $stm->execute();
                 $con = null;
-                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
-                    echo "R$: {$linha['valorparametro']}";
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                // print_r($resultado);
 
 
-               // print_r($resultado);
+
+                foreach($resultado as $dados){
+                    $numCredito = $dados["qtdecredito"];
+                    $i = 0;
+                    $id = "opcao" . $i;
+                    echo $numCredito;
+                    $i++;
+                }
 
 
             }
+            return $numCredito;
 
-        }catch (Exception $ex){
-            echo "Erro: " .$ex->getMessage();
+        } catch (Exception $ex) {
+            echo "Erro: ".$ex->getMessage();
 
         }
     }
-    public function vMensal_20(){
-        try{
-            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
 
-            $con = new BancoPDO();
-            $con = $con->conexao();
-            if($stm = $con->prepare($sql)) {
-                $stm->execute();
-                $con = null;
-                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
-                echo "R$ ".number_format($linha['valorparametro']/6, 2,'.','') ;
-            }
-        }catch (Exception $ex){
-            echo "Erro: " .$ex->getMessage();
-        }
 
-    }
 
-    public function vSemestral(){
-        try{
-            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
 
-            $con = new BancoPDO();
-            $con = $con->conexao();
-            if($stm = $con->prepare($sql)) {
-                $stm->execute();
-                $con = null;
-                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
-                echo "R$ ".number_format($linha['valorparametro']/20, 2,'.','') ;
-            }
-        }catch (Exception $ex){
-            echo "Erro: " .$ex->getMessage();
-        }
 
-    }
 
-    public function vMensal(){
-        try{
-            $sql = "SELECT valorparametro FROM tbcursos WHERE tipocurso = 'GRADUA플O'";
 
-            $con = new BancoPDO();
-            $con = $con->conexao();
-            if($stm = $con->prepare($sql)) {
-                $stm->execute();
-                $con = null;
-                ($linha = $resultado = $stm->fetch(PDO::FETCH_ASSOC));
-                echo "R$ ".number_format($linha['valorparametro']/(20*6), 2,'.','') ;
-            }
-        }catch (Exception $ex){
-            echo "Erro: " .$ex->getMessage();
-        }
 
-    }
+
     public function simular($caso, $credito){
         try{
 

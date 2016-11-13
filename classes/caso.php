@@ -4,9 +4,7 @@ class Caso{
   private $idCaso;
   private $nomeCaso;
   
-  function __construct(){
-      
-  }
+
            
 
 function setIdCaso($id){

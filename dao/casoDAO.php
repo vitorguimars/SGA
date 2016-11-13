@@ -43,11 +43,13 @@ class casoDAO{
                 $con = null;
                 $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
                // print_r($resultado);
-                echo "<select class='form-control'>";
+                echo "<select class='form-control' id='caso'>";
+                $i = 1;
                 foreach($resultado as $dados){
                     $nomecaso = $dados["nomecaso"];
                     //echo $nomecaso;
-                   echo "<option value='$nomecaso'>".$nomecaso."</option>";
+                   echo "<option value='$i'>".$nomecaso."</option>";
+                    $i++;
                 }
                echo "</select>";
                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));

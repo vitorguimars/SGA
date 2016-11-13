@@ -66,16 +66,29 @@ class DescontoDAO{
 
     public function getDesconto(Caso $caso, Credito $credito){
         try{
-            $con = new BancoPDO();
-            $con = $con->conexao();
-            $sql = $con->prepare("SELECT desc1 FROM tbdesconto WHERE fk_tbcasos_id = ? AND fk_tbcredito = ?");
-            $sql->bindValue(1,$caso->getIdCaso());
-            $sql->bindValue(2, $credito->getIdCredito());
+            $conexao = new BancoPDO();
+            $conexao = $conexao->conexao();
 
-            if($stm = $sql->execute($sql)){
+            $sql = "SELECT desc1 FROM tbdescontos WHERE fk_tbcasos_id = :idCaso AND fk_tbcredito = :idCredito;";
+
+            if($stm = $conexao->prepare($sql)){
+                $stm->bindValue(":idCaso", $caso->getIdCaso());
+                $stm->bindValue(":idCredito", $credito->getIdCredito());
                 $stm->execute();
-                $con = null;
-                return $this->populaDesconto($stm->fetch(PDO::FETCH_OBJ));            }
+                $conexao = null;
+                return $this->populaDesconto($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return false;
+
+
+
+
+
+
+
+
+
+
 
         }
         catch(Exception $ex){
@@ -85,8 +98,6 @@ class DescontoDAO{
 
     private function populaDesconto($row) {
         $desconto = new Desconto();
-
-        $desconto->setId($row->id);
         $desconto->setDesconto1($row->desc1);
         return $desconto;
     }

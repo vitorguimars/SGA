@@ -6,11 +6,7 @@ private $numCredito;
 private $desconto;
 
 
-function __construct($idCredito, $numCredito, $desconto) {
-    $this->idCredito = $idCredito;
-    $this->numCredito = $numCredito;
-    $this->desconto = $desconto;
-}
+
 
 function getIdCredito() {
     return $this->idCredito;

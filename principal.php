@@ -167,16 +167,16 @@
             </div>
         </section>
         <!-- Simulador Section -->
-        <section id="simulador" class="container content-section text-center">
-            <div class="row">
+        <section  class="container content-section text-center">
+            <div class="row" id="simulador">
                 <div class="col-lg-6 col-lg-offset-1">
 
                     <div class="container text-center" >
-                    <h2>SIMULADOR DE DESCONTO</h2>
+                    <h2 >SIMULADOR DE DESCONTO</h2>
                         </div>
 
                     <div>
-                        <table class="table table-bordered table-responsive"">
+                        <table class="table table-bordered table-responsive"" >
                             <tbody>
                             <tr>
                                 <td>Tabela de Preços <br> Matriculas <?php date_default_timezone_set('UTC');
@@ -349,7 +349,7 @@
                                     //print_r($comboCredito);
                                     ?>
                                 </td>
-                                <td>
+                                <td id="descontoS">
                                     <?php
                                     require_once '../sga/dao/descontoDAO.php';
                                     require_once '../sga/classes/credito.php';
@@ -359,27 +359,113 @@
 
 
 
-                                    $caso = new Caso();
-                                    $caso->setIdCaso(1);
+                                    $casoM = new Caso();
+                                    $creditoM = new Credito();
 
-                                    $credito = new Credito();
-                                    $credito->setIdCredito(5);
 
-                                    $desconto = $descontoDao->getDesconto($caso, $credito);
-                                    echo $desconto;
+                                    echo "
+                                        <script>
+                                            function desconto() {
+
+                                                var selectBox2 = document.getElementById('caso');
+                                                var caso = selectBox2.options[selectBox2.selectedIndex].value;
+
+                                                var selectBox = document.getElementById('selectBox');
+                                                var creditoval = selectBox.options[selectBox.selectedIndex].value;
+
+
+                                                window.location.href='http://localhost/sga/principal.php?casoSelected=' + caso + '&creditoSelected=' + creditoval;
+
+                                            }
+                                        </script>
+                                    ";
+
+                                        if($_GET['casoSelected'] != '' ){
+
+
+                                            //echo $creditoM->getIdCredito();
+                                           if($_GET['creditoSelected'] != ''){
+                                               $casoM->setIdCaso($_GET['casoSelected']);
+                                               $creditoM->setIdCredito($_GET['creditoSelected']);
+                                               $desconto = $descontoDao->getDesconto($casoM, $creditoM);
+                                               echo $desconto->getDesconto1() . "%";
+                                           }
+                                            else{
+                                                echo "0%";
+
+                                            }
+
+                                        }
+                                        else{
+                                            echo "0%";
+                                        }
+
+
+
+
+
+
+
+
+
+
                                     ?>
                                 </td>
-                                <td>1.015,00</td>
-                                <td>4.263,00</td>
-                                <td>6,0 %</td>
-                                <td>4.019,40</td>
-                                <td>34,0 %</td>
+                                <td id="ValParc1a6">
+                                    <script>
+                                        function valor1a6desc(){
+                                            var val1a6Normal = document.getElementById("valor1a6").textContent.replace("R$ ", "");
+                                            var desconto = parseInt(document.getElementById("descontoS").textContent.replace(/[^0-9]/g,"").replace("222",""));
+                                            var resultado1 = (val1a6Normal * desconto) / 100;
+
+                                            var resultado2 = val1a6Normal - resultado1;
+                                            document.getElementById("ValParc1a6").innerHTML = "R$ " + resultado2;
+                                        }
+                                    </script>
+                                </td>
+                                <td id="totalParcS">
+                                    <script>
+                                        function totalParcS(){
+                                            var valor1a6Desc = document.getElementById("ValParc1a6").textContent.replace("R$ ","") * 6;
+                                            /*var conta = (123*1.23)+(312*3.26);
+                                            var arredondado = parseFloat(conta.toFixed(2));
+
+                                            console.log(conta); // 1168.4099999999999
+                                            console.log(arredondado); //1168.41 */
+                                            var valArredondado =valor1a6Desc.toFixed(2);
+                                            document.getElementById("totalParcS").innerHTML = "R$ " + valArredondado;
+                                        }
+                                    </script>
+                                </td>
+                                <td id="porcentagemS">6,0 %</td>
+                                <td id="totVistaS">
+                                    <script>
+                                        function totVistaS(){
+                                            var totalParcelado = document.getElementById("tParcelado").textContent.replace("R$ ", "");
+                                            var descTaVista = document.getElementById("descTaVista").textContent.replace("%","");
+                                            var resultado1 = (totalParcelado * descTaVista) / 100;
+
+                                            var resultado2 = totalParcelado - resultado1;
+                                            document.getElementById("totVistaS").innerHTML = "R$ " + resultado2;
+                                        }
+                                    </script>
+                                </td>
+                                <td id="descTaVista">
+                                    <script>
+                                        function DesAvista(){
+                                            var porcDesc = parseInt(document.getElementById("descontoS").textContent.replace(/[^0-9]/g,"").replace("222","")) + 6;
+                                             document.getElementById("descTaVista").innerHTML =  porcDesc + "%";
+                                        }
+                                    </script>
+                                </td>
 
                             </tr>
                         </tbody>
                     </table>
                         </div>
-                    <a onclick="parcelas1a6(); tParcelado(); tAvista();" class="btn btn-default btn-lg col-lg-offset-7">Simular</a>
+                        <a onclick="desconto();" class="btn btn-default btn-lg ">Simular Desconto</a>
+
+                        <a onclick="parcelas1a6(); tParcelado(); tAvista(); DesAvista(); valor1a6desc(); totalParcS(); totVistaS();" class="btn btn-default btn-lg">Simular A vista</a>
                 </div>
             </div>
         </section>

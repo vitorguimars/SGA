@@ -13,15 +13,21 @@ class casoDAO{
     }
 
     //metodo de inserção
-    public function inserir($caso) {
+    public function inserir(Caso $caso) {
         try {
-            $stm = $this->conexao->prepare("INSERT INTO tbcasos(nomecaso)VALUE(?)");
-            echo $caso->nomeCaso;
 
-            $stm->bindValue(1, $caso->nomeCaso);
+            $conexao = new BancoPDO();
+            $conexao= $conexao->conexao();
 
-            if ($stm->execute()) {
-                echo 'Dados inseridos com sucesso!';
+            $sql = "INSERT INTO tbcasos(nomecaso)VALUE(:caso)";
+
+            if($stm = $conexao->prepare($sql)){
+                $stm->bindValue(":caso",$caso->getNomeCaso());
+                $stm->execute();
+                return true;
+
+            }else{
+                return false;
             }
         } catch (Exception $ex) {
             echo 'Erro: ' . $ex->getMessage();

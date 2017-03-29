@@ -21,8 +21,5 @@
     <footer padding-top:60px>
 
 </footer>
-
-
-
 </body>
 </html>

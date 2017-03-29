@@ -1,3 +1,21 @@
+
+<?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+   if($_GET["caso"]!= null){
+       if($_GET["caso"]== "true"){
+           echo "<script>alert('Dados Cadastrado com sucesso!');</script>";
+
+       }
+
+       else if($_GET["caso"]== "false"){
+           echo "<script>alert('Erro ao cadastrar!');</script>";
+
+       }
+       header("refresh:3;url=principal.php");
+   }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br" xmlns="http://www.w3.org/1999/html">
 
@@ -107,14 +125,40 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Cadastros</h2>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Créditos</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Casos</a>
+                    <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCasos">Casos</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Info. Infraestrutura</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Mercado de Trabalho</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Concorrentes</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Info. Cliente</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Cursos</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Ramais</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Interessados</a>
+                    <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
+                    <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressado">Interessados</a>
+                    <a href="#" class= "btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">teste</a>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modalCasos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="cadastrarCaso.php" id="formCaso" name="formCaso" >
+                                    <h2 style="color: #080808">Cadastro de Casos</h2>
+                                    <label style="color: #080808">Nome do Caso: </label>
+                                    <input type="text" style="color: #080808" name="casoTxt" id="casoTxt" />
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                               <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -445,7 +489,7 @@
                                             var descTaVista = document.getElementById("descTaVista").textContent.replace("%","");
                                             var resultado1 = (totalParcelado * descTaVista) / 100;
 
-                                            var resultado2 = totalParcelado - resultado1;
+                                            var resultado2 = (totalParcelado - resultado1).toFixed(2);
                                             document.getElementById("totVistaS").innerHTML = "R$ " + resultado2;
                                         }
                                     </script>

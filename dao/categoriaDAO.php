@@ -20,18 +20,20 @@ class CategoriaDAO{
     }
 
     //metodo inserção
-    public function inserir(){
+    public function inserir(Categoria $categoria){
 
         try{
-          $con  = new BancoPDO();
-            $con = $con->conexao();
-            $sql = $con->prepare("INSERT INTO tbcategorias (id, nomecategoria, valorparametro) VALUES (?,?,?)");
-            $sql->bindValue(1,id);
-            $sql->bindValue(2,nomecategoria);
-            $sql->bindValue(3,valorparametro);
-
-            if($sql->execute()){
-                echo 'Dados inseridos com sucesso!';
+            print_r($categoria);
+          $conexao = new BancoPDO();
+            $conexao = $conexao->conexao();
+            $sql = "INSERT INTO tbcategorias (nomecategoria,valorparametro)VALUES(:nomeCateg,:valorParam)";
+            if($stm = $conexao->prepare($sql)){
+                $stm->bindValue(":nomeCateg",$categoria->getNomeCategoria());
+                $stm->bindValue(":valorParam",$categoria->getValorParametro());
+                $stm->execute();
+                return true;
+            }else{
+                return false;
             }
         }catch (Exception $ex){
             echo 'Errro:' . $ex->getMessage();

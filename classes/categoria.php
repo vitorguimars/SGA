@@ -40,7 +40,7 @@ function setIdCategoria($id){
     }
 
     function getValorParametro(){
-        $this->valorParametro;
+       return $this->valorParametro;
     }
 
 

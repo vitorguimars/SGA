@@ -24,6 +24,7 @@ class casoDAO{
             if($stm = $conexao->prepare($sql)){
                 $stm->bindValue(":caso",$caso->getNomeCaso());
                 $stm->execute();
+                print_r($stm);
                 return true;
 
             }else{

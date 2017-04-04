@@ -13,6 +13,18 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
        }
        header("refresh:3;url=principal.php");
    }
+if($_GET["categoria"]!= null){
+    if($_GET["categoria"]== "true"){
+        echo "<script>alert('Dados Cadastrado com sucesso!');</script>";
+
+    }
+
+    else if($_GET["categoria"]== "false"){
+        echo "<script>alert('Erro ao cadastrar!');</script>";
+
+    }
+    header("refresh:3;url=principal.php");
+}
 
 ?>
 
@@ -126,6 +138,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
                     <h2>Cadastros</h2>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Créditos</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCasos">Casos</a>
+                    <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCategorias">Categorias</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Info. Infraestrutura</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Mercado de Trabalho</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Concorrentes</a>
@@ -133,7 +146,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Cursos</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressado">Interessados</a>
-                    <a href="#" class= "btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">teste</a>
+
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="modalCasos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -156,6 +169,32 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
                             <div class="modal-footer">
                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="cadastrarCategoria.php" id="formCategoria" name="formCategoria" >
+                                    <h2 style="color: #080808">Cadastro de Categorias</h2>
+                                    <label style="color: #080808">Nome da Categoria: </label>
+                                    <input type="text" style="color: #080808" name="nomeCategoriaTxt" id="nomeCategoriaTxt" /><br><br>
+                                    <label style="color: #080808">Valor Parametro: </label>
+                                    <input type="text" style="color: #080808" name="valorParamTxt" id="valorParamTxt" /><br><br>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button> -->
                             </div>
                         </div>
                     </div>

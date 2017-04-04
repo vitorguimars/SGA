@@ -25,6 +25,18 @@ if($_GET["categoria"]!= null){
     }
     header("refresh:3;url=principal.php");
 }
+if($_GET["credito"]!= null){
+    if($_GET["credito"]== "true"){
+        echo "<script>alert('Dados Cadastrado com sucesso!');</script>";
+
+    }
+
+    else if($_GET["credito"]== "false"){
+        echo "<script>alert('Erro ao cadastrar!');</script>";
+
+    }
+    header("refresh:3;url=principal.php");
+}
 
 ?>
 
@@ -135,8 +147,8 @@ if($_GET["categoria"]!= null){
         <section id="about" class="container content-section text-center">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Cadastros</h2>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Créditos</a>
+                    <h2>Gerênciamento de Cadastros</h2>
+                    <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCreditos">Créditos</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCasos">Casos</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCategorias">Categorias</a>
                     <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Info. Infraestrutura</a>
@@ -189,6 +201,30 @@ if($_GET["categoria"]!= null){
                                     <input type="text" style="color: #080808" name="nomeCategoriaTxt" id="nomeCategoriaTxt" /><br><br>
                                     <label style="color: #080808">Valor Parametro: </label>
                                     <input type="text" style="color: #080808" name="valorParamTxt" id="valorParamTxt" /><br><br>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalCreditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="cadastrarCredito.php" id="formCaso" name="formCaso" >
+                                    <h2 style="color: #080808">Cadastro de Créditos</h2>
+                                    <label style="color: #080808">Quantidade de Créditos: </label>
+                                    <input type="text" style="color: #080808" name="creditoTxt" id="creditoTxt" />
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>
                             </div>

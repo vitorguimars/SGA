@@ -1,31 +1,32 @@
 <?php
 
 require_once './banco/BancoPDO.php';
+require_once './classes/credito.php';
 
-class creditoDAO{
+class CreditoDAO{
     function __construct() {
 
     }
     
     //Metodo inserir
     
-    public function inserir($credito)
+    public function inserir(Credito $credito)
     {
         try {
-            $stm = $this->conexao->prepare("INSERT INTO tbcreditos(id, numcredito, desconto)VALUE(?,?,?)");
-            echo $credito->numcredito;
+            $conexao = new BancoPDO();
+            $conexao = $conexao->conexao();
+            $sql = "INSERT INTO tbcreditos(qtdecredito)VALUE(:credito)";
+            if($stm = $conexao->prepare($sql)) {
+                $stm->bindValue(":credito", $credito->getNumCredito());
+                $stm->execute();
+                print_r($stm);
+                return true;
 
-            $stm->bindValue(1, $credito->id);
-            $stm->bindValue(2, $credito->numcredito);
-            $stm->bindValue(3, $credito->desconto);
-
-
-
-            if ($stm->execute()) {
-                echo "Dados inseridos com sucesso! <br>";
+            }else{
+                return false;
             }
 
-        } catch (Exception $ex) {
+            } catch (Exception $ex) {
             echo "Erro: " . $ex->getMessage();
 
         }

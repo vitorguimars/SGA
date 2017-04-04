@@ -1,6 +1,6 @@
 <?php
 
-class credito{
+class Credito{
 private $idCredito;
 private $numCredito;
 private $desconto;

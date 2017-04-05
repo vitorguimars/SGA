@@ -25,7 +25,7 @@ if($_GET["categoria"]!= null){
     }
     header("refresh:3;url=principal.php");
 }
-if($_GET["credito"]!= null){
+/**if($_GET["credito"]!= null){
     if($_GET["credito"]== "true"){
         echo "<script>alert('Dados Cadastrado com sucesso!');</script>";
 
@@ -36,7 +36,7 @@ if($_GET["credito"]!= null){
 
     }
     header("refresh:3;url=principal.php");
-}
+}*/
 
 ?>
 
@@ -148,14 +148,14 @@ if($_GET["credito"]!= null){
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Gerênciamento de Cadastros</h2>
-                    <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCreditos">Créditos</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCasos">Casos</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCategorias">Categorias</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Info. Infraestrutura</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Mercado de Trabalho</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Concorrentes</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Info. Cliente</a>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Cursos</a>
+                    <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalMercado">Mercado de Trabalho</a>
+                    <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCreditos">Créditos</a>
+                    <a href="#" class="btn btn-default btn-lg">Info. Infraestrutura</a>
+                    <a href="#" class="btn btn-default btn-lg">Concorrentes</a>
+                    <a href="#" class="btn btn-default btn-lg">Info. Cliente</a>
+                    <a href="#" class="btn btn-default btn-lg">Cursos</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressado">Interessados</a>
 
@@ -211,7 +211,7 @@ if($_GET["credito"]!= null){
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="modalCreditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="modalMercado" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -221,7 +221,33 @@ if($_GET["credito"]!= null){
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form method="post" action="cadastrarCredito.php" id="formCaso" name="formCaso" >
+                                <form method="post" action="cadastrarMercado.php" id="formMercado" name="formMercado" >
+                                    <h2 style="color: #080808">Mercado de Trabalho</h2>
+                                    <label style="color: #080808">Possivel questionamento do candidato: </label>
+                                    <input type="text" style="color: #080808" name="questTxt" id="questTxt" /><br><br>
+                                    <label style="color: #080808">Abordagem: </label>
+                                    <input type="text" style="color: #080808" name="abordagemTxt" id="abordagemTxt" /><br><br>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalCreditos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                           <div class="modal-body">
+                                <form method="post" action="cadastrarCredito.php" id="formCredito" name="formCredito" >
                                     <h2 style="color: #080808">Cadastro de Créditos</h2>
                                     <label style="color: #080808">Quantidade de Créditos: </label>
                                     <input type="text" style="color: #080808" name="creditoTxt" id="creditoTxt" />

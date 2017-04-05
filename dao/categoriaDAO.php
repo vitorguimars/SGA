@@ -23,7 +23,7 @@ class CategoriaDAO{
     public function inserir(Categoria $categoria){
 
         try{
-            print_r($categoria);
+          //  print_r($categoria);
           $conexao = new BancoPDO();
             $conexao = $conexao->conexao();
             $sql = "INSERT INTO tbcategorias (nomecategoria,valorparametro)VALUES(:nomeCateg,:valorParam)";

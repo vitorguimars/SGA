@@ -7,8 +7,8 @@
  */
 
 
- require_once '../banco/BancoPDO.php';
-require_once'../classes/mercado.php';
+ require_once './banco/BancoPDO.php';
+require_once'./classes/mercado.php';
 
  class MercadoDAO{
 
@@ -20,7 +20,7 @@ require_once'../classes/mercado.php';
  }
 
      //metodo de inserção
-     public function inserir(mercado $mercado){
+     public function inserir(Mercado $mercado){
 
          try{
              print_r($mercado);
@@ -30,7 +30,12 @@ require_once'../classes/mercado.php';
              $sql= "INSERT INTO tbmercado(questCandidato, abordagem)VALUES(:questCandidato, :abordagem)";
              if($stm = $conexao->prepare($sql)){
                 $stm->bindValue(':questCandidato',$mercado->getQuestCandidato());
-                 print_r($stm);
+                 $stm->bindValue(':abordagem', $mercado->getAbordagem());
+                 $stm->execute();
+                 return true;
+                // print_r($stm);
+             }else{
+                 return false;
              }
 
          }catch (Exception $ex){

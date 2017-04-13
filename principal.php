@@ -25,7 +25,7 @@ if($_GET["categoria"]!= null){
     }
     header("refresh:3;url=principal.php");
 }
-/**if($_GET["credito"]!= null){
+if($_GET["credito"]!= null){
     if($_GET["credito"]== "true"){
         echo "<script>alert('Dados Cadastrado com sucesso!');</script>";
 
@@ -36,7 +36,19 @@ if($_GET["categoria"]!= null){
 
     }
     header("refresh:3;url=principal.php");
-}*/
+}
+if($_GET["mercado"]!= null){
+    if($_GET["mercado"]== "true"){
+        echo "<script>alert('Dados Cadastrado com sucesso!');</script>";
+
+    }
+
+    else if($_GET["mercado"]== "false"){
+        echo "<script>alert('Erro ao cadastrar!');</script>";
+
+    }
+    header("refresh:3;url=principal.php");
+}
 
 ?>
 
@@ -223,10 +235,10 @@ if($_GET["categoria"]!= null){
                             <div class="modal-body">
                                 <form method="post" action="cadastrarMercado.php" id="formMercado" name="formMercado" >
                                     <h2 style="color: #080808">Mercado de Trabalho</h2>
-                                    <label style="color: #080808">Possivel questionamento do candidato: </label>
-                                    <input type="text" style="color: #080808" name="questTxt" id="questTxt" /><br><br>
-                                    <label style="color: #080808">Abordagem: </label>
-                                    <input type="text" style="color: #080808" name="abordagemTxt" id="abordagemTxt" /><br><br>
+                                    <label style="color: #080808">Possivel questionamento do candidato: </label><br><br>
+                                    <textarea rows="4" cols="50" name="questTxt" id="questTxt" style="color: #080808"></textarea><br><br>
+                                    <label style="color: #080808">Abordagem: </label><br><br>
+                                    <textarea rows="4" cols="50" name="abordagemTxt" id="abordagemtTxt" style="color: #080808"></textarea><br><br>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>
                             </div>
@@ -321,7 +333,7 @@ if($_GET["categoria"]!= null){
                         </div>
 
                     <div>
-                        <table class="table table-bordered table-responsive"" >
+                        <table class="table table-bordered table-responsive" >
                             <tbody>
                             <tr>
                                 <td>Tabela de Preços <br> Matriculas <?php date_default_timezone_set('UTC');
@@ -496,9 +508,9 @@ if($_GET["categoria"]!= null){
                                 </td>
                                 <td id="descontoS">
                                     <?php
-                                    require_once '../sga/dao/descontoDAO.php';
-                                    require_once '../sga/classes/credito.php';
-                                    require_once '../sga/classes/caso.php';
+                                    require_once 'dao/descontoDAO.php';
+                                    require_once 'classes/credito.php';
+                                    require_once 'classes/caso.php';
 
                                     $descontoDao = new DescontoDAO();
 

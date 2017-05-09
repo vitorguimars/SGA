@@ -80,16 +80,6 @@ class DescontoDAO{
             }
             return false;
 
-
-
-
-
-
-
-
-
-
-
         }
         catch(Exception $ex){
             echo "Erro: " . $ex->getMessage();

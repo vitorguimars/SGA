@@ -24,7 +24,7 @@ function getNomeCaso(){
 }
 
 function __toString(){
-  return "O caso de id {$this->idCaso}. possui o nome de " .
+    return "O caso de id {$this->idCaso}. possui o nome de " .
     $this->nomeCaso;
 }
 

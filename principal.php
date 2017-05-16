@@ -59,15 +59,16 @@ if($_GET["ramal"]!= null){
     header("refresh:3;url=principal.php");
 
 }
-/**if($_GET["interessado"]!=null){
-    if($_GET["interessado"] == true){
-        echo "<script>alert('Dados Cadastrados com sucesso!');</script>";
+if($_GET["interesse"]!= null){
+    if($_GET["interesse"] == true){
+        echo "<script>alert('Dados Cadastrados com sucesso');</script>";
     }
-    else if ($_GET["interessado"] == false){
-        echo "<script>alert('Erro ao cadastrar');</script>";
+    else if($_GET["interesse"]== "false"){
+        echo "<script>alert('Erro ao cadastrar!');</script>";
     }
     header("refresh:3;url=principal.php");
-}**/
+
+}
 
 ?>
 

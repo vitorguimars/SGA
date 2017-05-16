@@ -23,7 +23,7 @@ print_r($_POST);
     $objetoRamal->setRamal($ramal);
     print_r($objetoRamal);
 
-    if($ramalDao->inserir($objetoRamal)== true){
+    if($ramalDao->inserir($objetoRamal)){
        header("location:principal.php?ramal=true");
    }else{
       header("location:principal.php?ramal=false");

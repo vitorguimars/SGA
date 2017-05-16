@@ -28,10 +28,10 @@ if($_POST["nomeTxt"]!="" && $_POST["telTxt"]!="" && $_POST["emailTxt"]!="" && $_
 
     print_r($objetoInteressado);
 
-    if($interessadoDao->inserir($objetoInteressado)){
-        header("location:principal.php?interessado = true");
+    if($interessadoDao->inserir($objetoInteressado)== true){
+        header("location:principal.php?interesse = true");
     }else{
-        header("location:principal.php?interessado = false");
+        header("location:principal.php?interesse = false");
     }
 
 }

@@ -59,6 +59,15 @@ if($_GET["ramal"]!= null){
     header("refresh:3;url=principal.php");
 
 }
+/**if($_GET["interessado"]!=null){
+    if($_GET["interessado"] == true){
+        echo "<script>alert('Dados Cadastrados com sucesso!');</script>";
+    }
+    else if ($_GET["interessado"] == false){
+        echo "<script>alert('Erro ao cadastrar');</script>";
+    }
+    header("refresh:3;url=principal.php");
+}**/
 
 ?>
 
@@ -179,7 +188,7 @@ if($_GET["ramal"]!= null){
                     <a href="#" class="btn btn-default btn-lg">Info. Cliente</a>
                     <a href="#" class="btn btn-default btn-lg">Cursos</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
-                    <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressado">Interessados</a>
+                    <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressados">Interessados</a>
 
                 </div>
                 <!-- Modal -->
@@ -301,6 +310,48 @@ if($_GET["ramal"]!= null){
                                     <input type="text" style="color: #080808" name="setorTxt" id="setorTxt" /><br><br>
                                     <label style="color: #080808">Ramal: </label>
                                     <input type="text" style="color: #080808" name="ramalTxt" id="ramalTxt" /><br><br>
+
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalInteressados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="cadastrarInteressado.php" id="formInteressado" name="formInteressado" >
+                                    <h2 style="color: #080808">Cadastro de Interessados</h2>
+                                    <label style="color: #080808">Nome: </label>
+                                    <input type="text" class="form-control" style="color: #080808" name="nomeTxt" id="nomeTxt" />
+                                    <label style="color: #080808">Telefone: </label>
+                                    <input type="text" class="form-control"  style="color: #080808" name="telTxt" id="telTxt" />
+                                    <label style="color: #080808">E-mail: </label>
+                                    <input type="text" class="form-control"  style="color: #080808" name="emailTxt" id="emailTxt" /><br><br>
+                                    <label style="color: #080808">Interesse: </label>
+                                    <div class="form-group">
+                                    <select class="form-control" name="interesseTxt">
+                                        <option value="0">Selecione...</option>
+                                        <?php
+                                         require_once'../sga/dao/interessadoDAO.php';
+                                         $interessadoDao = new InteressadoDAO();
+                                         $interessado = $interessadoDao->visualizar();
+                                        ?>
+                                    </select>
+                                    </div>
+                                    <label style="color: #080808">Obervação: </label><br>
+                                    <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>

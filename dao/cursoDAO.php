@@ -1,27 +1,33 @@
 <?php
 
-require_once '../banco/BancoPDO.php';
+require_once './banco/BancoPDO.php';
+require_once'./classes/curso.php';
+require_once'./classes/categoria.php';
 
-class cursoDAO extends BancoPDO{
+class CursoDAO{
+
+    public static $conexao = null;
     
     function __construct() {
-        $this->conexao = BancoPDO::conexao();
+
     }
     
     //metod de inserção
-    public function inserir($curso){
-        try{
-            $stm = $this->conexao->prepare("INSERT INTO tbcurso(idcurso, nomecurso, tipocurso, valorparametro)VALUE(?,?,?,?)");
-            echo $curso->nomecurso;
-            
-            $stm->bindValue(1,$curso->idcurso);
-            $stm->bidValue(2,$curso->nomecurso);
-            $stm->bindValue(3,$curso->tipocurso);
-            $stm->bindValue(4,$curso->valorparametro);
-            
-            if($stm->execute()){
-                echo 'Dados inseridos com sucesso!';
+    public function inserir(Curso $curso){
+        try {
+            $conexao = new BancoPDO();
+            $conexao = $conexao->conexao();
+            $sql = "INSERT INTO tbcursos(nomecurso,fk_tbcategoria_id)VALUES(:nomecurso,:categoria)";
+            if ($stm = $conexao->prepare($sql)) {
+                $stm->bindValue(":nomecurso", $curso->getNomeCurso());
+                $stm->bindValue("categoria", $curso->getCategoria());
+                $stm->execute();
+
+                return true;
+            } else {
+                return false;
             }
+
         } catch (Exception $ex) {
             echo 'Erro: '.$ex->getMessage();
 
@@ -29,41 +35,33 @@ class cursoDAO extends BancoPDO{
         
     }
     
-    public function visualizar($idcurso = "", $combo=""){
+    public function visualizar(){
         try{
-        if($idsolicitante ==""){
-            $stm = $this->conexao->prepare("SELECT * FROM tbcurso");
-            
-    }else{
-        $stm = $this->conexao->prepare("SELECT * FROM tbcurso WHERE idcurso = ?");
-        $stm->bindParam(1, $idsolicitante, PDO::PARAM_INT);
-        
-    }
-    if($stm->execute()){
-        if($combo == ""){
-            $tabela = "<table><tr>"
-                            ."<td>CODIGO</td>"
-                            ."<td>NOME CURSO</td>"
-                            ."<td>CATEGORIA</td>"
-                            ."<td>VALOR PARÂMTETRO</td>"
-                            ."</tr>";
-            
-                    while ($dados = $stm->fetch(PDO::FETCH_OBJ)){
-                        $tabela .="<tr>"
-                                 ."<td>".$dados->idcurso."</td>"
-                                 ."<td>".$dados->nomecurso."</td>"
-                                 ."<td>".$dados->tipocurso."</td>"
-                                 ."<td>".$dados->valorparametro."<\td>"
-                                 ."</tr>";
-                    }
-                    $tabela .="<\table>";
-                    echo $tabela;
-        }
-        
-    }
+            $sql = "SELECT * FROM tbcategorias";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)){
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+
+                $i = 1;
+                foreach($resultado as $dados){
+                    $nomeCategoria = $dados["nomecategoria"];
+
+                    echo "<option value='$i'>".$nomeCategoria."</option>";
+                    $i++;
+                }
+
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
     
     }catch(PDOException $ex){
-        echo 'Erro: '.$ex->getMessage();
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
     }
         
     } 

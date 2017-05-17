@@ -70,6 +70,17 @@ if($_GET["interesse"]!= null){
 
 }
 
+if($_GET["curso"]!= null){
+    if($_GET["curso"] == true){
+        echo "<script>alert('Dados Cadastrados com sucesso');</script>";
+    }
+    else if($_GET["curso"]== "false"){
+        echo "<script>alert('Erro ao cadastrar!');</script>";
+    }
+    header("refresh:3;url=principal.php");
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -186,8 +197,7 @@ if($_GET["interesse"]!= null){
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCreditos">Créditos</a>
                     <a href="#" class="btn btn-default btn-lg">Info. Infraestrutura</a>
                     <a href="#" class="btn btn-default btn-lg">Concorrentes</a>
-                    <a href="#" class="btn btn-default btn-lg">Info. Cliente</a>
-                    <a href="#" class="btn btn-default btn-lg">Cursos</a>
+                    <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalCursos">Cursos</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressados">Interessados</a>
 
@@ -354,6 +364,41 @@ if($_GET["interesse"]!= null){
                                     <label style="color: #080808">Obervação: </label><br>
                                     <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalCursos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="cadastrarCurso.php" id="formCurso" name="formCurso" >
+                                    <h2 style="color: #080808">Cadastro de Cursos</h2>
+                                    <label style="color: #080808">Nome do Curso: </label>
+                                    <input type="text" class="form-control" style="color: #080808" name="nomeTxt" id="nomeTxt" />
+                                    <label style="color: #080808">Categoria: </label>
+                                    <div class="form-group">
+                                        <select class="form-control" name="categoriaTxt">
+                                            <option value="0">Selecione...</option>
+                                            <?php
+                                            require_once'../sga/dao/cursoDAO.php';
+                                            $cursoDao = new cursoDAO();
+                                            $curso = $cursoDao->visualizar();
+                                            ?>
+                                        </select>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>
                             </div>

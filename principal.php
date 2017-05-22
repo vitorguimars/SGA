@@ -63,7 +63,7 @@ if($_GET["interesse"]!= null){
     if($_GET["interesse"] == true){
         echo "<script>alert('Dados Cadastrados com sucesso');</script>";
     }
-    else if($_GET["interesse"]== "false"){
+    else if($_GET["interesse"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
     header("refresh:3;url=principal.php");
@@ -74,11 +74,22 @@ if($_GET["curso"]!= null){
     if($_GET["curso"] == true){
         echo "<script>alert('Dados Cadastrados com sucesso');</script>";
     }
-    else if($_GET["curso"]== "false"){
+    else if($_GET["curso"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
     header("refresh:3;url=principal.php");
 
+}
+
+if($_GET["concorrente"] != null){
+    if($_GET["concorrente"] == true){
+        echo "<script>alert('Dados cadastrados com sucesso!');</script>";
+    }
+    elseif($_GET["concorrente"] == false){
+        echo"<script>alert('Erro ao cadastrar!');</script>";
+
+    }
+    header("refresh:3;url=principal.php");
 }
 
 ?>
@@ -196,7 +207,7 @@ if($_GET["curso"]!= null){
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalMercado">Mercado de Trabalho</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCreditos">Créditos</a>
                     <a href="#" class="btn btn-default btn-lg">Info. Infraestrutura</a>
-                    <a href="#" class="btn btn-default btn-lg">Concorrentes</a>
+                    <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalConcorrentes">Concorrentes</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalCursos">Cursos</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalInteressados">Interessados</a>
@@ -399,6 +410,61 @@ if($_GET["curso"]!= null){
                                             ?>
                                         </select>
                                     </div>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="button" class="btn btn-primary">Save changes</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalConcorrentes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" action="cadastrarConcorrente.php" id="formConcorrente" name="formConcorrente" >
+                                    <h2 style="color: #080808">Cadastro de Concorrentes</h2>
+                                    <label style="color: #080808">Categoria: </label>
+                                    <div class="form-group">
+                                    <select class="form-control" name="categoriaTxt">
+                                        <option value="0">Selecione...</option>
+                                        <?php
+                                        require_once'../sga/dao/concorrenteDAO.php';
+                                        $concorrenteDao = new ConcorrenteDAO();
+                                        $categoria = $concorrenteDao->comboCategoria();
+                                        ?>
+                                    </select>
+                                        <label style="color: #080808">Curso: </label>
+                                    <select class="form-control" name="cursoTxt">
+                                        <option value="0">Selecione...</option>
+                                        <?php
+                                        require_once'../sga/dao/concorrenteDAO.php';
+                                        $concorrenteDao = new ConcorrenteDAO();
+                                        $curso = $concorrenteDao->comboCurso();
+                                        ?>
+                                    </select>
+                                        </div>
+                                    <label style="color: #080808">Nome da Empresa: </label>
+                                    <input type="text" class="form-control" style="color: #080808" name="empresaTxt" id="empresaTxt" />
+                                    <label style="color: #080808">Site: </label>
+                                    <input type="text" class="form-control" style="color: #080808" name="siteTxt" id="siteTxt" />
+                                    <label style="color: #080808">Produto/Serviço: </label>
+                                    <input type="text" class="form-control" style="color: #080808" name="prodServTxt" id="prodServTxt" />
+                                    <label style="color: #080808">Impacto ao nosso negócio: </label>
+                                    <input type="text" class="form-control" style="color: #080808" name="impactoTxt" id="impactoTxt" />
+                                    <label style="color: #080808">Obervação/Diferenciais: </label><br>
+                                    <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
+
+
+
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>
                             </div>

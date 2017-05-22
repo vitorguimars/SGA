@@ -44,13 +44,13 @@ class Concorrente{
     }
 
     public function getNomeEmpresa(){
-        $this->nomeEmpresa;
+       return $this->nomeEmpresa;
     }
     public function setSite($nomeSite){
         $this->site = $nomeSite;
     }
     public function getSite(){
-        $this->site;
+       return $this->site;
     }
 
     public function setProduto($prod){
@@ -58,7 +58,7 @@ class Concorrente{
     }
 
     public function getProduto(){
-        $this->prodServ;
+       return $this->prodServ;
     }
 
     public function setImpacto($imp){
@@ -67,14 +67,14 @@ class Concorrente{
     }
 
     public function getImpacto(){
-        $this->impacto;
+       return $this->impacto;
     }
 
     public function setObservacao($observ){
         $this->obsevacao = $observ;
     }
     public function getObservacao(){
-        $this->obsevacao;
+       return $this->obsevacao;
     }
 
     function __toString(){

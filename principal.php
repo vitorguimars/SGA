@@ -95,7 +95,8 @@ if($_GET["concorrente"] != null){
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/html">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
 
     <head>
 
@@ -227,8 +228,9 @@ if($_GET["concorrente"] != null){
                                 <form method="post" action="cadastrarCaso.php" id="formCaso" name="formCaso" >
                                     <h2 style="color: #080808">Cadastro de Casos</h2>
                                     <label style="color: #080808">Nome do Caso: </label>
-                                    <input type="text" style="color: #080808" name="casoTxt" id="casoTxt" />
+                                    <input type="text" style="color: #080808" name="casoTxt" id="casoTxt" /><br><br>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <a href="listaCasos.php" >Visualizar casos</a>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -277,9 +279,9 @@ if($_GET["concorrente"] != null){
                                 <form method="post" action="cadastrarMercado.php" id="formMercado" name="formMercado" >
                                     <h2 style="color: #080808">Mercado de Trabalho</h2>
                                     <label style="color: #080808">Possivel questionamento do candidato: </label><br><br>
-                                    <textarea rows="4" cols="50" name="questTxt" id="questTxt" style="color: #080808"></textarea><br><br>
+                                    <textarea rows="4" cols="50" name="questTxt" id="questTxt" class="text-uppercase" style="color: #080808"></textarea><br><br>
                                     <label style="color: #080808">Abordagem: </label><br><br>
-                                    <textarea rows="4" cols="50" name="abordagemTxt" id="abordagemtTxt" style="color: #080808"></textarea><br><br>
+                                    <textarea rows="4" cols="50" name="abordagemTxt" id="abordagemtTxt"class="text-uppercase" style="color: #080808"></textarea><br><br>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
                                 </form>
                             </div>
@@ -327,9 +329,9 @@ if($_GET["concorrente"] != null){
                                 <form method="post" action="cadastrarRamal.php" id="formRamal" name="formRamal" >
                                     <h2 style="color: #080808">Cadastro de Ramais</h2>
                                     <label style="color: #080808">Nome: </label>
-                                    <input type="text" style="color: #080808" name="nomeTxt" id="nomeTxt" /><br><br>
+                                    <input type="text "class="form-control text-uppercase"style="color: #080808" name="nomeTxt" id="nomeTxt" /><br><br>
                                     <label style="color: #080808">Setor: </label>
-                                    <input type="text" style="color: #080808" name="setorTxt" id="setorTxt" /><br><br>
+                                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="setorTxt" id="setorTxt" /><br><br>
                                     <label style="color: #080808">Ramal: </label>
                                     <input type="text" style="color: #080808" name="ramalTxt" id="ramalTxt" /><br><br>
 
@@ -356,7 +358,7 @@ if($_GET["concorrente"] != null){
                                 <form method="post" action="cadastrarInteressado.php" id="formInteressado" name="formInteressado" >
                                     <h2 style="color: #080808">Cadastro de Interessados</h2>
                                     <label style="color: #080808">Nome: </label>
-                                    <input type="text" class="form-control" style="color: #080808" name="nomeTxt" id="nomeTxt" />
+                                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="nomeTxt" id="nomeTxt" />
                                     <label style="color: #080808">Telefone: </label>
                                     <input type="text" class="form-control"  style="color: #080808" name="telTxt" id="telTxt" />
                                     <label style="color: #080808">E-mail: </label>
@@ -398,7 +400,7 @@ if($_GET["concorrente"] != null){
                                 <form method="post" action="cadastrarCurso.php" id="formCurso" name="formCurso" >
                                     <h2 style="color: #080808">Cadastro de Cursos</h2>
                                     <label style="color: #080808">Nome do Curso: </label>
-                                    <input type="text" class="form-control" style="color: #080808" name="nomeTxt" id="nomeTxt" />
+                                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="nomeTxt" id="nomeTxt" />
                                     <label style="color: #080808">Categoria: </label>
                                     <div class="form-group">
                                         <select class="form-control" name="categoriaTxt">
@@ -453,15 +455,15 @@ if($_GET["concorrente"] != null){
                                     </select>
                                         </div>
                                     <label style="color: #080808">Nome da Empresa: </label>
-                                    <input type="text" class="form-control" style="color: #080808" name="empresaTxt" id="empresaTxt" />
+                                    <input type="text" class="form-control text-uppercase"  style="color: #080808" name="empresaTxt" id="empresaTxt" />
                                     <label style="color: #080808">Site: </label>
                                     <input type="text" class="form-control" style="color: #080808" name="siteTxt" id="siteTxt" />
                                     <label style="color: #080808">Produto/Serviço: </label>
-                                    <input type="text" class="form-control" style="color: #080808" name="prodServTxt" id="prodServTxt" />
+                                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="prodServTxt" id="prodServTxt" />
                                     <label style="color: #080808">Impacto ao nosso negócio: </label>
-                                    <input type="text" class="form-control" style="color: #080808" name="impactoTxt" id="impactoTxt" />
+                                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="impactoTxt" id="impactoTxt" />
                                     <label style="color: #080808">Obervação/Diferenciais: </label><br>
-                                    <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
+                                    <textarea class="text-uppercase" rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
 
 
@@ -508,10 +510,45 @@ if($_GET["concorrente"] != null){
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Informações Gerais</h2>
-                    <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
-                    <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+
+                    <p>Cursos Superiores chancelados e direcionados pelas demandas dos nossos empresários industriais, conceito 4 MEC,
+                    prova única de redação, laboratórios de primeira linha, estacionamento gratuito e, obviamente, toda
+                    credibilidade da marca SENAIRS no seu currículo profissional.</p>
+                    <p>
+                    <ul class="col-lg-8 col-lg-offset-2">
+                        <li>
+                            <i><u>Formas de Ingresso : </i></u> Vestibular, Transferência e diplomdados.
+                        </li>
+                        <li>
+                           <i><u>Seleção para Ingresso : </i></u> Redação (mediante agendamento).
+                        </li>
+                    <li>
+                        <i><u>Horário da prova : </i></u>19:00 ás 21:00 (tempo para a realização da prova).
+                    </li>
+                    <li>
+                        <i><u>Local da prova:</i></u>Av. Assis Brasil, 8450 - Sarandi - Porto Alegre (Estacionamento no local - Gratuito).
+                    </li>
+                        <li>
+                            <i><u>Taxa de inscrição do Vestibular :</i></u>A taxa de inscrição será substituida por um alimento não perecível que pode ser 1kg de arroz ou 1kg de feijão ou 2 litros de leite longa vida.
+                        </li>
+                        <li>
+                            <i><u>Aulas presenciais/noite : </i></u>Segunda a Sexta-feira
+                        </li>
+                        <li>
+                            <i><u>Condições promocionais : </i></u>Até 50% Desconto para, Industriários* e dependentes*, Ex-alunos do SENAI-RS, transferidos, Diplomados e Reingressos. Conheça também o Desconto no Programa Fidelidade. *Funcionários de empresas contribuintes do Sistema Industria (SENAI/FIERGS).
+                        </li>
+                        <li>
+                            <i><u>Inicio das Aulas : </i></u>05/06/2017 e 24/07/2017
+                        </li>
+                    </ul>
                     </p>
-                    <ul class="list-inline banner-social-buttons">
+
+
+
+
+                    <p><a href="http://www.senairs.com.br/faculdade ">www.senairs.com.br/faculdade </a>
+                    </p>
+                   <!-- <ul class="list-inline banner-social-buttons">
                         <li>
                             <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                         </li>
@@ -521,7 +558,7 @@ if($_GET["concorrente"] != null){
                         <li>
                             <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
                         </li>
-                    </ul>
+                    </ul>-->
                 </div>
             </div>
         </section>
@@ -835,7 +872,7 @@ if($_GET["concorrente"] != null){
         <!-- Footer -->
         <footer>
             <div class="container text-center">
-                <p>Copyright &copy; www.senairs.com.br/faculdade - 2016</p>
+                <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2016</p>
             </div>
         </footer>
 

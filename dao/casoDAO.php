@@ -35,7 +35,7 @@ class casoDAO{
         }
     }
 
-    public function visualizar() {
+    public function listarCasos() {
         try {
             $sql = "SELECT * FROM tbcasos;";
 
@@ -49,23 +49,67 @@ class casoDAO{
                 $stm->execute();
                 $con = null;
                 $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
-               // print_r($resultado);
-                echo "<select class='form-control' id='caso'>";
-                $i = 1;
-                foreach($resultado as $dados){
-                    $nomecaso = $dados["nomecaso"];
-                    //echo $nomecaso;
-                   echo "<option value='$i'>".$nomecaso."</option>";
-                    $i++;
-                }
-               echo "</select>";
-               // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+                return $resultado;
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
             }
             return null;
         } catch (Exception $e) {
             echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
         }
     }
+
+    public function excluirCaso(Caso $caso){
+        try{
+            $sql = "DELETE FROM tbcasos WHERE id = :id;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":id", $caso->getIdCaso());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception $ex){
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
+    public function visualizar() {
+    try {
+        $sql = "SELECT * FROM tbcasos;";
+
+        $con = new BancoPDO();
+        $con = $con->conexao();
+
+        if ($stm = $con->prepare($sql)) {
+
+
+
+            $stm->execute();
+            $con = null;
+            $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+            // print_r($resultado);
+            echo "<select class='form-control' id='caso'>";
+            $i = 1;
+            foreach($resultado as $dados){
+                $nomecaso = $dados["nomecaso"];
+                //echo $nomecaso;
+                echo "<option value='$i'>".$nomecaso."</option>";
+                $i++;
+            }
+            echo "</select>";
+            // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+        }
+        return null;
+    } catch (Exception $e) {
+        echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+    }
+}
 
 
 

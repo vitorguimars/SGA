@@ -284,6 +284,7 @@ if($_GET["concorrente"] != null){
                                     <label style="color: #080808">Abordagem: </label><br><br>
                                     <textarea rows="4" cols="50" name="abordagemTxt" id="abordagemtTxt"class="text-uppercase" style="color: #080808"></textarea><br><br>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <a href="listaMercados.php" >Visualizar Mercado de Trabalho</a>
                                 </form>
                             </div>
                             <div class="modal-footer">

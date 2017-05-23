@@ -43,6 +43,49 @@ require_once'./classes/mercado.php';
          }
 
      }
+     public function excluirMercado(Mercado $mercado){
+         try{
+             $sql = "DELETE FROM tbmercado WHERE id = :id;";
+
+             $con = new BancoPDO();
+             $con = $con->conexao();
+
+             if($stm = $con->prepare($sql)){
+                 $stm->bindValue(":id", $mercado->getId());
+                 $stm->execute();
+                 return true;
+             }
+             else{
+                 return false;
+             }
+         }
+         catch(Exception $ex){
+             echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+         }
+     }
+
+     public function listarMercado() {
+         try {
+             $sql = "SELECT * FROM tbmercado;";
+
+             $con = new BancoPDO();
+             $con = $con->conexao();
+
+             if ($stm = $con->prepare($sql)) {
+
+
+
+                 $stm->execute();
+                 $con = null;
+                 $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                 return $resultado;
+                 // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+             }
+             return null;
+         } catch (Exception $e) {
+             echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+         }
+     }
 
  }
 

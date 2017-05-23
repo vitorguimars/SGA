@@ -19,10 +19,10 @@ class Categoria
 
 function setIdCategoria($id){
 
-    $this->idCaso = $id;
+    $this->idCategoria = $id;
 }
 
-    function getCategoria(){
+    function getIdCategoria(){
         return $this->idCategoria;
     }
 

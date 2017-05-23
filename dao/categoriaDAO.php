@@ -39,6 +39,50 @@ class CategoriaDAO{
             echo 'Errro:' . $ex->getMessage();
         }
 }
+
+    public function excluirCategoria(Categoria $categoria){
+        try{
+            $sql = "DELETE FROM tbcategorias WHERE id = :id;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":id", $categoria->getIdCategoria());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception $ex){
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+        }
+    }
+
+    public function listarCategorias() {
+        try {
+            $sql = "SELECT * FROM tbcategorias;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $resultado;
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
     public function visualizar(){
         try{
             $sql = "SELECT * FROM tbcategorias";

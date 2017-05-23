@@ -75,7 +75,7 @@ class casoDAO{
             }
         }
         catch(Exception $ex){
-            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
         }
     }
 

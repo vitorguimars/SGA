@@ -257,6 +257,7 @@ if($_GET["concorrente"] != null){
                                     <label style="color: #080808">Valor Parametro: </label>
                                     <input type="text" style="color: #080808" name="valorParamTxt" id="valorParamTxt" /><br><br>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <a href="listaCategorias.php" >Visualizar categorias</a>
                                 </form>
                             </div>
                             <div class="modal-footer">

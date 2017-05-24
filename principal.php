@@ -229,7 +229,7 @@ if($_GET["concorrente"] != null){
                                     <h2 style="color: #080808">Cadastro de Casos</h2>
                                     <label style="color: #080808">Nome do Caso: </label>
                                     <input type="text" style="color: #080808" name="casoTxt" id="casoTxt" /><br><br>
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
                                     <a href="listaCasos.php" >Visualizar casos</a>
                                 </form>
                             </div>
@@ -256,7 +256,7 @@ if($_GET["concorrente"] != null){
                                     <input type="text" style="color: #080808" name="nomeCategoriaTxt" id="nomeCategoriaTxt" /><br><br>
                                     <label style="color: #080808">Valor Parametro: </label>
                                     <input type="text" style="color: #080808" name="valorParamTxt" id="valorParamTxt" /><br><br>
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
                                     <a href="listaCategorias.php" >Visualizar categorias</a>
                                 </form>
                             </div>
@@ -283,7 +283,7 @@ if($_GET["concorrente"] != null){
                                     <textarea rows="4" cols="50" name="questTxt" id="questTxt" class="text-uppercase" style="color: #080808"></textarea><br><br>
                                     <label style="color: #080808">Abordagem: </label><br><br>
                                     <textarea rows="4" cols="50" name="abordagemTxt" id="abordagemtTxt"class="text-uppercase" style="color: #080808"></textarea><br><br>
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
                                     <a href="listaMercados.php" >Visualizar Mercado de Trabalho</a>
                                 </form>
                             </div>
@@ -308,7 +308,8 @@ if($_GET["concorrente"] != null){
                                     <h2 style="color: #080808">Cadastro de Créditos</h2>
                                     <label style="color: #080808">Quantidade de Créditos: </label>
                                     <input type="text" style="color: #080808" name="creditoTxt" id="creditoTxt" />
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
+                                    <a href="listarCreditos.php" >Visualizar Lista de Creditos</a>
                                 </form>
                             </div>
                             <div class="modal-footer">

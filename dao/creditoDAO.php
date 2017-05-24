@@ -31,6 +31,50 @@ class CreditoDAO{
 
         }
     }
+    public function excluirCredito(Credito $credito){
+        try{
+            $sql = "DELETE FROM tbcreditos WHERE id = :id;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":id", $credito->getIdCredito());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception $ex){
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+        }
+    }
+
+    public function listarCreditos() {
+        try {
+            $sql = "SELECT * FROM tbcreditos ORDER BY qtdecredito";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $resultado;
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
         
         public function visualisar(){
             try{

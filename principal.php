@@ -63,7 +63,7 @@ if($_GET["interesse"]!= null){
     if($_GET["interesse"] == true){
         echo "<script>alert('Dados Cadastrados com sucesso');</script>";
     }
-    else if($_GET["interesse"]== false){
+    else if($_GET["interessado"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
     header("refresh:3;url=principal.php");
@@ -379,7 +379,8 @@ if($_GET["concorrente"] != null){
                                     <label style="color: #080808">Obervação: </label><br>
                                     <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
+                                    <a href="listarInteressados.php" >Visualizar Lista de Interessados</a>
                                 </form>
                             </div>
                             <div class="modal-footer">

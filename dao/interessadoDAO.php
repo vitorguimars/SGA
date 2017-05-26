@@ -43,6 +43,50 @@ class InteressadoDAO{
 
     }
 
+    public function listarInteressados() {
+        try {
+            $sql = "SELECT id, nome,telefone, email, nomecurso, observacao FROM `tbinteressados`, `tbcursos` WHERE tbinteressados.fk_tbcursos_id = tbcursos.idcurso";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $resultado;
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
+    public function excluirInteressado(Interessado $interessado){
+        try{
+            $sql = "DELETE FROM tbinteressados WHERE id = :id;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":id", $interessado->getIdInteressado());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception $ex){
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+        }
+    }
+
     public function visualizar() {
         try {
             $sql = "SELECT * FROM tbcursos;";

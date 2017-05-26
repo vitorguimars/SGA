@@ -13,7 +13,7 @@ if($_GET["id"] != null && $_GET["id"] != ""){
 
     $cursoDao = new CursoDAO();
     $curso = new Curso();
-    $curso->getIdCurso($_GET["id"]);
+    $curso->setIdCurso($_GET["id"]);
 
 
     if($cursoDao->excluirCurso($curso) == true){

@@ -15,13 +15,14 @@ if($_POST["nomeTxt"] !="" && $_POST["setorTxt"] != "" && $_POST["ramalTxt"] !=""
     $nome = $_POST["nomeTxt"];
     $setor = $_POST["setorTxt"];
     $ramal = $_POST["ramalTxt"];
-print_r($_POST);
+
     $objetoRamal = new Ramal();
     $ramalDao = new ramalDAO();
+
     $objetoRamal->setNome($nome);
     $objetoRamal->setSetor($setor);
     $objetoRamal->setRamal($ramal);
-    print_r($objetoRamal);
+   // print_r($objetoRamal);
 
     if($ramalDao->inserir($objetoRamal)){
        header("location:principal.php?ramal=true");

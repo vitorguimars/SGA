@@ -35,7 +35,7 @@ if($_GET["credito"]!= null){
         echo "<script>alert('Erro ao cadastrar!');</script>";
 
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:2;url=principal.php");
 }
 if($_GET["mercado"]!= null){
     if($_GET["mercado"]== "true"){
@@ -66,7 +66,7 @@ if($_GET["interesse"]!= null){
     else if($_GET["interessado"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:2;url=principal.php");
 
 }
 
@@ -77,7 +77,7 @@ if($_GET["curso"]!= null){
     else if($_GET["curso"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:2;url=principal.php");
 
 }
 

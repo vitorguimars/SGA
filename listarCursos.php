@@ -9,15 +9,15 @@
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if($_GET["excluido"]!= null){
     if($_GET["excluido"]== "true"){
-    //    echo "<script>alert('Dados excluidos com sucesso!');</script>";
+        echo "<script>alert('Dados excluidos com sucesso!');</script>";
 
     }
 
     else if($_GET["excluido"]== "false"){
-    //    echo "<script>alert('Erro ao excluir!');</script>";
+        echo "<script>alert('Erro ao excluir!');</script>";
 
     }
-  //  header("refresh:3;url=listarCursos.php");
+    header("refresh:3;url=listarCursos.php");
 }
 
 ?>

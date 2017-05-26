@@ -24,9 +24,9 @@ if($_POST["nomeTxt"]!="" && $_POST["categoriaTxt"]!=""){
   // print_r($objetoCurso);
 
     if($cursoDao->inserir($objetoCurso)){
-        header("location:principal.php?curso = true");
+        header("location:principal.php?curso=true");
     }else{
-        header("location:principal.php?curso = false");
+        header("location:principal.php?curso=false");
    }
 
 }

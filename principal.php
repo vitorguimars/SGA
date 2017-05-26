@@ -207,7 +207,6 @@ if($_GET["concorrente"] != null){
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCategorias">Categorias</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalMercado">Mercado de Trabalho</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCreditos">Créditos</a>
-                    <a href="#" class="btn btn-default btn-lg">Info. Infraestrutura</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalConcorrentes">Concorrentes</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalCursos">Cursos</a>
                     <a href="#" class="btn btn-default btn-lg" data-toggle="modal" data-target="#modalRamais">Ramais</a>
@@ -415,7 +414,8 @@ if($_GET["concorrente"] != null){
                                             ?>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
+                                    <a href="listarCursos.php" >Visualizar cursos</a>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -485,11 +485,38 @@ if($_GET["concorrente"] != null){
         <!-- Ramais Section -->
         <section id="ramais" class="container content-section text-center">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-10 col-lg-offset-1">
                     <h2>Lista de Ramais</h2>
-                    <p>Grayscale is a free Bootstrap 3 theme created by Start Bootstrap. It can be yours right now, simply download the template on <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
-                    <p>This theme features stock photos by <a href="http://gratisography.com/">Gratisography</a> along with a custom Google Maps skin courtesy of <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
-                    <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+                    <div >
+                        <table class="table table-bordered table-responsive">
+
+                            <tr>
+
+                                <th>Nome</th>
+                                <th>Setor</th>
+                                <th>Ramal</th>
+                                <th>Editar</th>
+                                <th>Excluir</th>
+                            </tr>
+
+                            <tbody>
+                            <?php
+                            require_once "./dao/ramalDAO.php";
+                            $ramalDao = new ramalDAO();
+                            $resultado = $ramalDao->listarRamais();
+                            foreach($resultado as $row){
+                                echo "<tr>";
+                                echo "<td>".$row["nome"]."</td>";
+                                echo "<td>".$row["setor"]."</td>";
+                                echo "<td>".$row["ramal"]."</td>";
+                                echo "<td><a href='#' data-toggle='modal' data-target='#modalRamais'>Editar</a></td>";
+                                echo "<td><a href='excluirRamais.php?id=".$row["id"]."'>Excluir</a></td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>

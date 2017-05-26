@@ -32,9 +32,53 @@ class CursoDAO{
             echo 'Erro: '.$ex->getMessage();
 
         }
-        
+        print_r($curso);
     }
-    
+    public function excluirCurso(Curso $curso){
+        try{
+            $sql = "DELETE FROM tbcursos WHERE idcurso = :id";
+
+            $conexao = new BancoPDO();
+            $conexao = $conexao->conexao();
+
+            if($stm = $conexao->prepare($sql)){
+                $stm->bindValue(":id", $curso->getIdCurso());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception $ex){
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+        }
+    }
+
+    public function listaCursos() {
+        try {
+            $sql = "SELECT idcurso, nomecurso, nomecategoria FROM `tbcategorias`, `tbcursos` WHERE tbcursos.fk_tbcategoria_id = tbcategorias.id";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $resultado;
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
+
     public function visualizar(){
         try{
             $sql = "SELECT * FROM tbcategorias";

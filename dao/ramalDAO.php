@@ -45,6 +45,50 @@ class ramalDAO
 
     }
 
+    public function listarRamais() {
+        try {
+            $sql = "SELECT * FROM tbramais ORDER BY nome;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $resultado;
+                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
+    public function excluirRamal(Ramal $ramal){
+        try{
+            $sql = "DELETE FROM tbramais WHERE id = :id;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":id", $ramal->getIdRamal());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch(Exception $ex){
+            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+        }
+    }
+
 
 
 }

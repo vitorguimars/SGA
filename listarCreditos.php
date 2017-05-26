@@ -134,14 +134,14 @@ if($_GET["excluido"]!= null){
         <div class="col-lg-6 col-lg-offset-1">
             <div >
                 <table class="table table-bordered table-responsive">
-                    <thead>
+
                     <tr>
-                        <th>ID</th>
+
                         <th>Quantidade de Creditos</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
-                    </thead>
+
                     <tbody>
                     <?php
                     require_once "./dao/creditoDAO.php";
@@ -149,7 +149,7 @@ if($_GET["excluido"]!= null){
                     $resultado = $creditoDAO->listarCreditos();
                     foreach($resultado as $row){
                         echo "<tr>";
-                        echo "<td>". $row["id"] . "</td>";
+                      //  echo "<td>". $row["id"] . "</td>";
                         echo "<td>".$row["qtdecredito"]."</td>";
                         echo "<td><a href='#' data-toggle='modal' data-target='#modalCreditos'>Editar</a></td>";
                         echo "<td><a href='excluirCreditos.php?id=".$row["id"]."'>Excluir</a></td>";

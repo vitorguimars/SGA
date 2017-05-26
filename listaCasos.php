@@ -133,14 +133,14 @@ if($_GET["excluido"]!= null){
         <div class="col-lg-6 col-lg-offset-1">
             <div >
                 <table class="table table-bordered table-responsive">
-                    <thead>
+
                     <tr>
-                        <th>ID</th>
+
                         <th>Nome Caso</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
-                    </thead>
+
                     <tbody>
                     <?php
                         require_once "./dao/casoDAO.php";
@@ -148,7 +148,6 @@ if($_GET["excluido"]!= null){
                         $resultado = $casoDAO->listarCasos();
                         foreach($resultado as $row){
                             echo "<tr>";
-                            echo "<td>". $row["id"] . "</td>";
                             echo "<td>".$row["nomecaso"]."</td>";
                             echo "<td><a href='#' data-toggle='modal' data-target='#modalCasos'>Editar</a></td>";
                             echo "<td><a href='excluirCaso.php?id=".$row["id"]."'>Excluir</a></td>";

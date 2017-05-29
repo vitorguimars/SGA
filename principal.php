@@ -11,7 +11,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE);
            echo "<script>alert('Erro ao cadastrar!');</script>";
 
        }
-       header("refresh:3;url=principal.php");
+       header("refresh:1;url=principal.php");
    }
 if($_GET["categoria"]!= null){
     if($_GET["categoria"]== "true"){
@@ -23,7 +23,7 @@ if($_GET["categoria"]!= null){
         echo "<script>alert('Erro ao cadastrar!');</script>";
 
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:1;url=principal.php");
 }
 if($_GET["credito"]!= null){
     if($_GET["credito"]== "true"){
@@ -35,7 +35,7 @@ if($_GET["credito"]!= null){
         echo "<script>alert('Erro ao cadastrar!');</script>";
 
     }
-    header("refresh:2;url=principal.php");
+    header("refresh:1;url=principal.php");
 }
 if($_GET["mercado"]!= null){
     if($_GET["mercado"]== "true"){
@@ -47,7 +47,7 @@ if($_GET["mercado"]!= null){
         echo "<script>alert('Erro ao cadastrar!');</script>";
 
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:1;url=principal.php");
 }
 if($_GET["ramal"]!= null){
     if($_GET["ramal"] == true){
@@ -56,8 +56,21 @@ if($_GET["ramal"]!= null){
    else if($_GET["ramal"]== "false"){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:1;url=principal.php");
 
+}
+
+if($_GET["excluido"]!= null){
+    if($_GET["excluido"]== "true"){
+        echo "<script>alert('Dados excluidos com sucesso!');</script>";
+
+    }
+
+    else if($_GET["excluido"]== "false"){
+        echo "<script>alert('Erro ao excluir!');</script>";
+
+    }
+    header("refresh:1;url=principal.php");
 }
 if($_GET["interesse"]!= null){
     if($_GET["interesse"] == true){
@@ -66,7 +79,7 @@ if($_GET["interesse"]!= null){
     else if($_GET["interessado"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
-    header("refresh:2;url=principal.php");
+    header("refresh:1;url=principal.php");
 
 }
 
@@ -77,7 +90,7 @@ if($_GET["curso"]!= null){
     else if($_GET["curso"]== false){
         echo "<script>alert('Erro ao cadastrar!');</script>";
     }
-    header("refresh:2;url=principal.php");
+    header("refresh:1;url=principal.php");
 
 }
 
@@ -89,7 +102,7 @@ if($_GET["concorrente"] != null){
         echo"<script>alert('Erro ao cadastrar!');</script>";
 
     }
-    header("refresh:3;url=principal.php");
+    header("refresh:1;url=principal.php");
 }
 
 ?>
@@ -202,7 +215,7 @@ if($_GET["concorrente"] != null){
         <section id="about" class="container content-section text-center">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Gerênciamento de Cadastros</h2>
+                    <h2>Gerenciamento de Cadastros</h2>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCasos">Casos</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalCategorias">Categorias</a>
                     <a href="#" class="btn btn-default btn-lg"data-toggle="modal" data-target="#modalMercado">Mercado de Trabalho</a>
@@ -471,7 +484,8 @@ if($_GET["concorrente"] != null){
 
 
 
-                                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
+                                    <a href="listarConcorrentes.php" >Visualizar concorrentes</a>
                                 </form>
                             </div>
                             <div class="modal-footer">

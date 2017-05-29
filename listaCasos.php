@@ -16,7 +16,7 @@ if($_GET["excluido"]!= null){
         echo "<script>alert('Erro ao excluir!');</script>";
 
     }
-    header("refresh:3;url=listaCasos.php");
+    header("refresh:1;url=listaCasos.php");
 }
 
 ?>

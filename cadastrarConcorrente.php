@@ -34,9 +34,9 @@ if($_POST["categoriaTxt"]!="" && $_POST["cursoTxt"]!="" && $_POST["empresaTxt"]!
     print_r($objetoConcorrente);
 
     if($concorrenteDao->inserir($objetoConcorrente) == true){
-        header("location:principal.php?concorrente = true");
+        header("location:principal.php?concorrente=true");
     }else{
-        header("location:principal.php?concorrente = false");
+        header("location:principal.php?concorrente=false");
     }
 
 }

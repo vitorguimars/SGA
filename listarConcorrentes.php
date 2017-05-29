@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: vitor
- * Date: 24/05/2017
- * Time: 19:30
+ * Date: 23/05/2017
+ * Time: 21:23
  */
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
@@ -17,7 +17,7 @@ if($_GET["excluido"]!= null){
         echo "<script>alert('Erro ao excluir!');</script>";
 
     }
-    header("refresh:1;url=listarCursos.php");
+    header("refresh:1;url=listarConcorrentes.php");
 }
 
 ?>
@@ -91,7 +91,7 @@ if($_GET["excluido"]!= null){
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h1 class="brand-heading">SGA</h1>
-                    <p class="intro-text">Gerenciamento de Cursos</p>
+                    <p class="intro-text">Gerenciamento de Concorrentes</p>
                     <!--<br>Faculdade Senai de Tecnologia</p> -->
 
                 </div>
@@ -114,23 +114,42 @@ if($_GET["excluido"]!= null){
                 <?php
                 echo $_GET["id"];
                 ?>
-                <form method="post" action="cadastrarCurso.php" id="formCurso" name="formCurso" >
-                    <h2 style="color: #080808">Edição de Cursos</h2>
-                    <label style="color: #080808">Nome do Curso: </label>
-                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="nomeTxt" id="nomeTxt" />
+                <form method="post" action="cadastrarCredito.php" id="formCredito" name="formCredito" >
+                    <h2 style="color: #080808">Edição de Concorrentes</h2>
                     <label style="color: #080808">Categoria: </label>
                     <div class="form-group">
                         <select class="form-control" name="categoriaTxt">
                             <option value="0">Selecione...</option>
                             <?php
-                            require_once'../sga/dao/cursoDAO.php';
-                            $cursoDao = new cursoDAO();
-                            $curso = $cursoDao->visualizar();
+                            require_once'../sga/dao/concorrenteDAO.php';
+                            $concorrenteDao = new ConcorrenteDAO();
+                            $categoria = $concorrenteDao->comboCategoria();
+                            ?>
+                        </select>
+                        <label style="color: #080808">Curso: </label>
+                        <select class="form-control" name="cursoTxt">
+                            <option value="0">Selecione...</option>
+                            <?php
+                            require_once'../sga/dao/concorrenteDAO.php';
+                            $concorrenteDao = new ConcorrenteDAO();
+                            $curso = $concorrenteDao->comboCurso();
                             ?>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
-                    <a href="listaCategorias.php" >Visualizar cursos</a>
+                    <label style="color: #080808">Nome da Empresa: </label>
+                    <input type="text" class="form-control text-uppercase"  style="color: #080808" name="empresaTxt" id="empresaTxt" />
+                    <label style="color: #080808">Site: </label>
+                    <input type="text" class="form-control" style="color: #080808" name="siteTxt" id="siteTxt" />
+                    <label style="color: #080808">Produto/Serviço: </label>
+                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="prodServTxt" id="prodServTxt" />
+                    <label style="color: #080808">Impacto ao nosso negócio: </label>
+                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="impactoTxt" id="impactoTxt" />
+                    <label style="color: #080808">Obervação/Diferenciais: </label><br>
+                    <textarea class="text-uppercase" rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
+
+
+
+                    <button type="submit" class="btn btn-primary">Alterar</button><br><br>
                 </form>
             </div>
             <div class="modal-footer">
@@ -142,31 +161,42 @@ if($_GET["excluido"]!= null){
 </div>
 
 <section  class="container content-section text-center">
-    <div class="row" id="cursos">
-        <div class="col-lg-8 col-lg-offset-1">
+    <div class="row" id="concorrente">
+        <div class="col-lg-6 col-lg-offset-1">
             <div >
                 <table class="table table-bordered table-responsive">
 
                     <tr>
 
-                        <th>Curso</th>
                         <th>Categoria</th>
+                        <th>Curso</th>
+                        <th>Empresa</th>
+                        <th>Site</th>
+                        <th>Produto/Serviço</th>
+                        <th>Impacto/Negocio</th>
+                        <th>Observação</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
 
                     <tbody>
                     <?php
-                    require_once "./dao/cursoDAO.php";
-                    $cursoDAO = new CursoDAO();
-                    $resultado = $cursoDAO->listaCursos();
+                    require_once "./dao/concorrenteDAO.php";
+                    $concorrenteDao = new ConcorrenteDAO();
+                    $resultado = $concorrenteDao->listarConcorrentes();
                     foreach($resultado as $row){
                         echo "<tr>";
-                      //  echo "<td>". $row["idcurso"] . "</td>";
-                        echo "<td>".$row["nomecurso"]."</td>";
+                        //  echo "<td>". $row["id"] . "</td>";
+
                         echo "<td>".$row["nomecategoria"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalCursos'>Editar</a></td>";
-                        echo "<td><a href='excluirCursos.php?id=".$row["idcurso"]."'>Excluir</a></td>";
+                        echo "<td>".$row["nomecurso"]."</td>";
+                        echo "<td>".$row["empresa"]."</td>";
+                        echo "<td>".$row["site"]."</td>";
+                        echo "<td>".$row["produto"]."</td>";
+                        echo "<td>".$row["impacto"]."</td>";
+                        echo "<td>".$row["observacao"]."</td>";
+                        echo "<td><a href='#' data-toggle='modal' data-target='#modalConcorrentes'>Editar</a></td>";
+                        echo "<td><a href='excluirConcorrente.php?id=".$row["idConcorrente"]."'>Excluir</a></td>";
                         echo "</tr>";
                     }
                     ?>
@@ -208,3 +238,6 @@ if($_GET["excluido"]!= null){
 </body>
 
 </html>
+
+
+

@@ -19,6 +19,18 @@ if($_GET["excluido"]!= null){
     }
     header("refresh:1;url=listarCreditos.php");
 }
+if($_GET["editado"]!= null){
+    if($_GET["editado"]== "true"){
+        echo "<script>alert('Dados editados com sucesso!');</script>";
+
+    }
+
+    else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao editar!');</script>";
+
+    }
+    header("refresh:1;url=listarCreditos.php");
+}
 
 ?>
 
@@ -100,36 +112,7 @@ if($_GET["excluido"]!= null){
     </div>
 </header>
 
-<!-- Modal -->
-<div class="modal fade" id="modalMercados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php
-                echo $_GET["id"];
-                ?>
-                <form method="post" action="cadastrarCredito.php" id="formCredito" name="formCredito" >
-                    <h2 style="color: #080808">Edição de Quantidade de Creditos</h2>
-                    <label style="color: #080808">Quantidade de Créditos: </label>
-                    <input type="text" style="color: #080808" name="creditoTxt" id="creditoTxt" />
-                    <button type="submit" class="btn btn-primary">Alterar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<section  class="container content-section text-center">
+<section  class=" text-center">
     <div class="row" id="creditos">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
@@ -147,13 +130,45 @@ if($_GET["excluido"]!= null){
                     require_once "./dao/creditoDAO.php";
                     $creditoDAO = new CreditoDAO();
                     $resultado = $creditoDAO->listarCreditos();
+                    $i = 1;
                     foreach($resultado as $row){
                         echo "<tr>";
                       //  echo "<td>". $row["id"] . "</td>";
                         echo "<td>".$row["qtdecredito"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalCreditos'>Editar</a></td>";
+                        echo "<td><a href='#'data-toggle='modal' data-target='#modalCreditos".$i."'>Editar</a></td>";
                         echo "<td><a href='excluirCreditos.php?id=".$row["id"]."'>Excluir</a></td>";
                         echo "</tr>";
+
+                        echo "
+                               <div class='modal fade' id='modalCreditos".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action= 'editarCredito.php' id='formCredito' name='formCredito' >
+                            <h2 style='color: #080808'>Editar Creditos</h2>
+                    <label style='color: #080808'>Quantidade de Creditos: </label>
+                    <input type='hidden' name='id' id='id' value='".$row["id"]."' />
+                    <input type='text' value='".$row["qtdecredito"]."' style='color: #080808' name='creditoTxt' id='creditoTxt' /><br><br>
+                    <button type='submit' class='btn btn-primary'>Editar</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                 <button type='button' class='btn btn-primary'>Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+                            ";
+                        $i++;
                     }
                     ?>
                     </tbody>

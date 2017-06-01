@@ -52,6 +52,32 @@ class CreditoDAO{
         }
     }
 
+    public function editarCredito(Credito $credito){
+
+        try{
+
+            $sql = "UPDATE tbcreditos SET qtdecredito = :qtde WHERE id = :idcredito";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":idcredito", $credito->getIdCredito());
+                $stm->bindValue(":qtde", $credito->getNumCredito());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }catch (Exception $ex){
+            echo 'Erro: ' .$ex->getMessage();
+        }
+
+    }
+
     public function listarCreditos() {
         try {
             $sql = "SELECT * FROM tbcreditos ORDER BY qtdecredito";

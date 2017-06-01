@@ -122,6 +122,32 @@ class casoDAO{
         return $caso;
     }
 
+    public function editarCaso(Caso $caso){
+
+        try{
+
+            $sql = "UPDATE tbcasos SET nomecaso = :nome WHERE id = :idcaso";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":idcaso", $caso->getIdCaso());
+                $stm->bindValue(":nome", $caso->getNomeCaso());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }catch (Exception $ex){
+            echo 'Erro: ' .$ex->getMessage();
+        }
+
+    }
+
 
 }
 ?>

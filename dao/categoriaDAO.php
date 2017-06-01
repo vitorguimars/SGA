@@ -61,6 +61,33 @@ class CategoriaDAO{
         }
     }
 
+    public function editarCategoria(Categoria $categoria){
+
+        try{
+
+            $sql = "UPDATE tbcategorias SET nomecategoria = :nome , valorparametro = :valor WHERE id = :idcategoria";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":idcategoria", $categoria->getIdCategoria());
+                $stm->bindValue(":nome", $categoria->getNomeCategoria());
+                $stm->bindValue(":valor", $categoria->getValorParametro());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }catch (Exception $ex){
+            echo 'Erro: ' .$ex->getMessage();
+        }
+
+    }
+
     public function listarCategorias() {
         try {
             $sql = "SELECT * FROM tbcategorias;";

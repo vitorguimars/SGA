@@ -20,6 +20,19 @@ if($_GET["excluido"]!= null){
     header("refresh:1;url=listaCategorias.php");
 }
 
+if($_GET["editado"]!= null){
+    if($_GET["editado"]== "true"){
+        echo "<script>alert('Dados alterados com sucesso!');</script>";
+
+    }
+
+    else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao editar!');</script>";
+
+    }
+    header("refresh:1;url=listaCategorias.php");
+}
+
 ?>
 
 
@@ -100,36 +113,9 @@ if($_GET["excluido"]!= null){
     </div>
 </header>
 
-<!-- Modal -->
-<div class="modal fade" id="modalCategorias" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php
-                echo $_GET["id"];
-                ?>
-                <form method="post" action="cadastrarCategoria.php" id="formCategoria" name="formCategoria" >
-                    <h2 style="color: #080808">Edição de Categorias</h2>
-                    <label style="color: #080808">Nome da Categoria: </label>
-                    <input type="text" style="color: #080808" name="categoriaTxt" id="categoriaTxt" /><br><br>
-                    <button type="submit" class="btn btn-primary">Alterar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
 
-<section  class="container content-section text-center">
+
+<section  class=" text-center">
     <div class="row" id="simulador">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
@@ -148,13 +134,48 @@ if($_GET["excluido"]!= null){
                     require_once "./dao/categoriaDAO.php";
                     $categoriaDAO = new CategoriaDAO();
                     $resultado = $categoriaDAO->listarCategorias();
+                    $i = 1;
                     foreach($resultado as $row){
                         echo "<tr>";
                         echo "<td>".$row["nomecategoria"]."</td>";
                         echo "<td>".$row["valorparametro"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalCategorias'>Editar</a></td>";
+                        echo "<td><a href='#'data-toggle='modal' data-target='#modalCategorias".$i."'>Editar</a></td>";
                         echo "<td><a href='excluirCategorias.php?id=".$row["id"]."'>Excluir</a></td>";
+
                         echo "</tr>";
+
+                        echo "
+
+                            <div class='modal fade' id='modalCategorias".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action= 'editarCategoria.php' id='formCategoria' name='formCategoria' >
+                            <h2 style='color: #080808'>Editar Categorias</h2>
+                    <label style='color: #080808'>Nome da Categoria: </label>
+                    <input type='hidden' name='id' id='id' value='".$row["id"]."' />
+                    <input type='text' value='".$row["nomecategoria"]."' style='color: #080808' name='categoriaTxt' id='categoriaTxt' /><br><br>
+                    <input type='text' value='".$row["valorparametro"]."' style='color: #080808' name='valorParamTxt' id='valorParamTxt' /><br><br>
+                    <button type='submit' class='btn btn-primary'>Editar</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                 <button type='button' class='btn btn-primary'>Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+                            ";
+                        $i++;
                     }
                     ?>
                     </tbody>

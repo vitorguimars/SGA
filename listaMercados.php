@@ -4,6 +4,7 @@
  * User: vitor
  * Date: 23/05/2017
  * Time: 20:30
+ * info: ajustar, pois não retorna os dados dentros das textareas.
  */
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if($_GET["excluido"]!= null){
@@ -14,6 +15,19 @@ if($_GET["excluido"]!= null){
 
     else if($_GET["excluido"]== "false"){
         echo "<script>alert('Erro ao excluir!');</script>";
+
+    }
+    header("refresh:1;url=listaMercados.php");
+}
+
+if($_GET["editado"]!= null){
+    if($_GET["editado"]== "true"){
+        echo "<script>alert('Dados editados com sucesso!');</script>";
+
+    }
+
+    else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao editar!');</script>";
 
     }
     header("refresh:1;url=listaMercados.php");
@@ -99,38 +113,7 @@ if($_GET["excluido"]!= null){
     </div>
 </header>
 
-<!-- Modal -->
-<div class="modal fade" id="modalMercados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php
-                echo $_GET["id"];
-                ?>
-                <form method="post" action="cadastrarMercado.php" id="formMercado" name="formMercado" >
-                    <h2 style="color: #080808">Edição de Mercado de Trabalho</h2>
-                    <label style="color: #080808">Possivel questionamento do candidato: </label><br><br>
-                    <textarea rows="4" cols="50" name="questTxt" id="questTxt" class="text-uppercase" style="color: #080808"></textarea><br><br>
-                    <label style="color: #080808">Abordagem: </label><br><br>
-                    <textarea rows="4" cols="50" name="abordagemTxt" id="abordagemtTxt"class="text-uppercase" style="color: #080808"></textarea><br><br>
-                    <button type="submit" class="btn btn-primary">Alterar</button>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<section  class="container content-section text-center">
+<section  class=" text-center">
     <div class="row" id="simulador">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
@@ -149,13 +132,50 @@ if($_GET["excluido"]!= null){
                     require_once "./dao/mercadoDAO.php";
                     $mercadoDAO = new MercadoDAO();
                     $resultado = $mercadoDAO->listarMercado();
+                    $i = 1;
                     foreach($resultado as $row){
                         echo "<tr>";
                         echo "<td>".$row["questCandidato"]."</td>";
                         echo "<td>".$row["abordagem"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalMercados'>Editar</a></td>";
+                        echo "<td><a href='#'data-toggle='modal' data-target='#modalMercados".$i."'>Editar</a></td>";
                         echo "<td><a href='excluirMercados.php?id=".$row["id"]."'>Excluir</a></td>";
                         echo "</tr>";
+
+                       // print_r($i);
+
+                        echo "
+
+                            <div class='modal fade' id='modalMercados".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action= 'editarMercado.php' id='formMercado' name='formMercado' >
+                            <h2 style='color: #080808'>Editar Mercado de Trabalho</h2>
+                    <label style='color: #080808'>Possivel questionamento do candidato: </label>
+                    <input type='hidden' name='id' id='id' value='".$row["id"]."' />
+                    <textarea rows='4' cols='50'value='".$row["questCandidato"]."' name='questTxt' id='questTxt' class='text-uppercase' style='color: #080808'></textarea><br><br>
+                    <label style='color: #080808'>Abordagem: </label><br><br>
+                     <textarea rows='4' cols='50'value='".$row["abordagem"]."' name='abordagemTxt' id='abordagemTxt' class='text-uppercase' style='color: #080808'></textarea><br><br>
+                     <button type='submit' class='btn btn-primary'>Editar</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                 <button type='button' class='btn btn-primary'>Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+                            ";
+                        $i++;
                     }
                     ?>
                     </tbody>

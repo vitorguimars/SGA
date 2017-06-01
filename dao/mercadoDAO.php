@@ -64,6 +64,33 @@ require_once'./classes/mercado.php';
          }
      }
 
+     public function editarMercado(Mercado $mercado){
+
+         try{
+
+             $sql = "UPDATE tbmercado SET questCandidato = :quest , abordagem = :abordagem WHERE id = :idMercado";
+
+             $con = new BancoPDO();
+             $con = $con->conexao();
+
+             if($stm = $con->prepare($sql)){
+                 $stm->bindValue(":idMercado", $mercado->getId());
+                 $stm->bindValue(":quest", $mercado->getQuestCandidato());
+                 $stm->bindValue(":abordagem", $mercado->getAbordagem());
+                 $stm->execute();
+                 return true;
+             }
+             else{
+                 return false;
+             }
+
+
+         }catch (Exception $ex){
+             echo 'Erro: ' .$ex->getMessage();
+         }
+
+     }
+
      public function listarMercado() {
          try {
              $sql = "SELECT * FROM tbmercado;";

@@ -89,6 +89,34 @@ class ramalDAO
         }
     }
 
+    public function editarRamal(Ramal $ramal){
+
+        try{
+
+            $sql = "UPDATE tbramais SET nome = :nome, setor = :setor, ramal = :ramal WHERE id = :idRamal";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":idRamal", $ramal->getIdRamal());
+                $stm->bindValue(":nome", $ramal->getNome());
+                $stm->bindValue(":setor", $ramal->getSetor());
+                $stm->bindValue(":ramal", $ramal->getRamal());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }catch (Exception $ex){
+            echo 'Erro: ' .$ex->getMessage();
+        }
+
+    }
+
 
 
 }

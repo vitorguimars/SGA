@@ -49,12 +49,12 @@ if($_GET["mercado"]!= null){
     }
     header("refresh:1;url=principal.php");
 }
-if($_GET["ramal"]!= null){
-    if($_GET["ramal"] == true){
-      echo "<script>alert('Dados Cadastrados com sucesso');</script>";
+if($_GET["editado"]!= null){
+    if($_GET["editado"] == true){
+      echo "<script>alert('Dados alterados com sucesso!');</script>";
    }
-   else if($_GET["ramal"]== "false"){
-        echo "<script>alert('Erro ao cadastrar!');</script>";
+   else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao editar!');</script>";
     }
     header("refresh:1;url=principal.php");
 
@@ -519,14 +519,51 @@ if($_GET["concorrente"] != null){
                             require_once "./dao/ramalDAO.php";
                             $ramalDao = new ramalDAO();
                             $resultado = $ramalDao->listarRamais();
+                            $i = 1;
                             foreach($resultado as $row){
                                 echo "<tr>";
                                 echo "<td>".$row["nome"]."</td>";
                                 echo "<td>".$row["setor"]."</td>";
                                 echo "<td>".$row["ramal"]."</td>";
-                                echo "<td><a href='#' data-toggle='modal' data-target='#modalRamais'>Editar</a></td>";
+                                echo "<td><a href='#'data-toggle='modal' data-target='#modalRamais".$i."'>Editar</a></td>";
                                 echo "<td><a href='excluirRamais.php?id=".$row["id"]."'>Excluir</a></td>";
                                 echo "</tr>";
+
+                                echo "
+
+                            <div class='modal fade' id='modalRamais".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action= 'editarRamal.php' id='formRamal' name='formRamal' >
+                            <h2 style='color: #080808'>Editar Casos</h2>
+                    <label style='color: #080808'>Nome: </label>
+                    <input type='hidden' name='id' id='id' value='".$row["id"]."' />
+                    <input type='text' value='".$row["nome"]."' style='color: #080808' name='nomeTxt' id='nomeTxt' /><br><br>
+                    <label style='color: #080808'>Setor: </label>
+                    <input type='text' value='".$row["setor"]."' style='color: #080808' name='setorTxt' id='setorTxt' /><br><br>
+                    <label style='color: #080808'>Ramal: </label>
+                    <input type='text' value='".$row["ramal"]."' style='color: #080808' name='ramalTxt' id='ramalTxt' /><br><br>
+                    <button type='submit' class='btn btn-primary'>Editar</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                 <button type='button' class='btn btn-primary'>Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+                            ";
+                                $i++;
                             }
                             ?>
                             </tbody>

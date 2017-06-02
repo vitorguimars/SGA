@@ -14,10 +14,10 @@ if($_POST["id"] != null && $_POST["id"] != "" && $_POST["questTxt"]!=null && $_P
 
     $mercado = new Mercado();
     $mercado->setId($_POST["id"]);
-    $mercado->setQuestCandidato($_POST["questTxt"]);
-    $mercado->setAbordagem($_POST["abordagemTxt"]);
+    $mercado->setQuestCandidato(strtoupper($_POST["questTxt"]));
+    $mercado->setAbordagem(strtoupper($_POST["abordagemTxt"]));
 
-
+    //$texto= strtoupper($_POST['texto']);
     //print_r($caso);
 
     if($mercadoDao->editarMercado($mercado) == true){

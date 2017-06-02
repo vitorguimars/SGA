@@ -4,8 +4,7 @@
  * User: vitor
  * Date: 23/05/2017
  * Time: 20:30
- * info: ajustar, pois não retorna os dados dentros das textareas.
- */
+  */
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if($_GET["excluido"]!= null){
     if($_GET["excluido"]== "true"){
@@ -104,7 +103,7 @@ if($_GET["editado"]!= null){
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h1 class="brand-heading">SGA</h1>
-                    <p class="intro-text">Gerenciamento de Categorias</p>
+                    <p class="intro-text">Gerenciamento de Mercado de Trabalho</p>
                     <!--<br>Faculdade Senai de Tecnologia</p> -->
 
                 </div>
@@ -158,12 +157,13 @@ if($_GET["editado"]!= null){
 
                 <form method='post' action= 'editarMercado.php' id='formMercado' name='formMercado' >
                             <h2 style='color: #080808'>Editar Mercado de Trabalho</h2>
-                    <label style='color: #080808'>Possivel questionamento do candidato: </label>
+
                     <input type='hidden' name='id' id='id' value='".$row["id"]."' />
-                    <textarea rows='4' cols='50'value='".$row["questCandidato"]."' name='questTxt' id='questTxt' class='text-uppercase' style='color: #080808'></textarea><br><br>
+                    <label style='color: #080808'>Possivel questionamento do candidato: </label><br><br>
+                    <textarea rows='4' cols='50' name='questTxt' id='questTxt' class='text-uppercase' style='color: #080808'>". $row["questCandidato"] ."</textarea><br><br>
                     <label style='color: #080808'>Abordagem: </label><br><br>
-                     <textarea rows='4' cols='50'value='".$row["abordagem"]."' name='abordagemTxt' id='abordagemTxt' class='text-uppercase' style='color: #080808'></textarea><br><br>
-                     <button type='submit' class='btn btn-primary'>Editar</button>
+                    <textarea rows='4' cols='50' name='abordagemTxt' id='abordagemTxt' class='text-uppercase' style='color: #080808'>". $row["abordagem"] ."</textarea><br><br>
+                    <button type='submit' class='btn btn-primary'>Editar</button>
                 </form>
             </div>
             <div class='modal-footer'>

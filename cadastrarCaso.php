@@ -14,7 +14,7 @@ if ($_POST["casoTxt"]!= ""){
 
 
 
-    $caso = $_POST["casoTxt"];
+    $caso = strtoupper($_POST["casoTxt"]);
     $objetoCaso = new Caso();
     $casoDao = new casoDAO();
 

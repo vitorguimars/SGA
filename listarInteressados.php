@@ -6,6 +6,10 @@
  * Time: 19:08
  */
 
+require_once'../sga/dao/interessadoDAO.php';
+$interessadoDao = new InteressadoDAO();
+$interesse = $interessadoDao->visualizarSemEco();
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if($_GET["excluido"]!= null){
     if($_GET["excluido"]== "true"){
@@ -170,6 +174,7 @@ if($_GET["excluido"]!= null){
                     require_once "./dao/interessadoDAO.php";
                     $interessadoDao = new InteressadoDAO();
                     $resultado = $interessadoDao->listarInteressados();
+                    $i = 1;
                     foreach($resultado as $row){
                         echo "<tr>";
                         echo "<td>".$row["nome"]."</td>";
@@ -177,9 +182,59 @@ if($_GET["excluido"]!= null){
                         echo "<td>".$row["email"]."</td>";
                         echo "<td>".$row["nomecurso"]."</td>";
                         echo "<td>".$row["observacao"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalInteressado'>Editar</a></td>";
+                        echo "<td><a href='#'data-toggle='modal' data-target='#modalInteressado".$i."'>Editar</a></td>";
                         echo "<td><a href='excluirInteressado.php?id=".$row["id"]."'>Excluir</a></td>";
                         echo "</tr>";
+
+                        echo "
+
+                            <div class='modal fade' id='modalInteressado".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action= 'editarInteressado.php' id='formInteressado' name='formInteressado' >
+                            <h2 style='color: #080808'>Editar Interessado</h2>
+                    <label style='color: #080808'>Nome: </label>
+                    <input type='hidden' name='id' id='id' value='".$row["id"]."' />
+                    <input type='text' value='".$row["nome"]."' class='form-control text-uppercase' style='color: #080808' name='nomeTxt' id='nomeTxt' />
+                    <label style='color: #080808'>Telefone: </label>
+                    <input type='text' value='".$row["telefone"]."' class='form-control text-uppercase' style='color: #080808' name='telTxt' id='telTxt' />
+                    <label style='color: #080808'>E-mail: </label>
+                    <input type='text' value='".$row["email"]."' class='form-control text-uppercase' style='color: #080808' name='emailTxt' id='emailTxt' />
+                    <label style='color: #080808'>Interesse: </label>
+                     <div class='form-group'>
+                            <select class='form-control' name='interesseTxt'>
+                                <option value='0'>Selecione...</option>";
+                                       $k = 1;
+                                foreach($interesse as $linha){
+                                    echo "<option value='".$k."'>".$linha["nomecurso"]."</option>";
+                                    $k++;
+                                }
+
+                           echo " </select><br><br>
+                        </div>
+                        <label style='color: #080808'>Observação: </label>
+                        <textarea rows='4' cols='50' name='observacaoTxt' id='observacaoTxt' class='text-uppercase' style='color: #080808'>". $row["observacao"] ."</textarea><br><br>
+                    <button type='submit' class='btn btn-primary'>Editar</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                 <button type='button' class='btn btn-primary'>Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+                            ";
+                        $i++;
                     }
                     ?>
                     </tbody>

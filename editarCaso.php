@@ -14,7 +14,7 @@ if($_POST["id"] != null && $_POST["id"] != "" && $_POST["casoTxt"]!=null && $_PO
 
     $caso = new Caso();
     $caso->setIdCaso($_POST["id"]);
-    $caso->setNomeCaso($_POST["casoTxt"]);
+    $caso->setNomeCaso(strtoupper($_POST["casoTxt"]));
 
 
     print_r($caso);

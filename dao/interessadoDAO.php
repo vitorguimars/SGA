@@ -87,6 +87,36 @@ class InteressadoDAO{
         }
     }
 
+    public function editarInteressado(Interessado $interessado){
+
+        try{
+
+            $sql = "UPDATE tbinteressados, tbcursos SET nome = :nome, telefone = :telefone, email = :email, fk_tbcursos_id = :idcurso, observacao = :observ WHERE tbinteressados.id = :id";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if($stm = $con->prepare($sql)){
+                $stm->bindValue(":id", $interessado->getIdInteressado());
+                $stm->bindValue(":nome", $interessado->getNomeInteressado());
+                $stm->bindValue(":telefone", $interessado->getTelefone());
+                $stm->bindValue(":email", $interessado->getEmail());
+                $stm->bindValue(":idcurso", $interessado->getInteresse());
+                $stm->bindValue(":observ", $interessado->getObservacao());
+                $stm->execute();
+                return true;
+            }
+            else{
+                return false;
+            }
+
+
+        }catch (Exception $ex){
+            echo 'Erro: ' .$ex->getMessage();
+        }
+
+    }
+
     public function visualizar() {
         try {
             $sql = "SELECT * FROM tbcursos;";
@@ -111,7 +141,7 @@ class InteressadoDAO{
                     $i++;
                 }
 
-                // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
+                 return $resultado;
             }
             return null;
         } catch (Exception $e) {
@@ -125,6 +155,29 @@ class InteressadoDAO{
         $curso->setIdCurso($row->idcurso);
         $curso->setNomeCurso($row->nomecurso);
         return $curso;
+    }
+
+    public function visualizarSemEco() {
+        try {
+            $sql = "SELECT * FROM tbcursos;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+                return $resultado;
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
     }
 }
 

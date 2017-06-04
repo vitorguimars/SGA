@@ -6,6 +6,10 @@
  * Time: 19:30
  */
 
+require_once'../sga/dao/cursoDAO.php';
+$cursoDao = new CursoDAO();
+$verCategoria = $cursoDao->visualizarModalidade();
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if($_GET["excluido"]!= null){
     if($_GET["excluido"]== "true"){
@@ -15,6 +19,18 @@ if($_GET["excluido"]!= null){
 
     else if($_GET["excluido"]== "false"){
         echo "<script>alert('Erro ao excluir!');</script>";
+
+    }
+    header("refresh:1;url=listarCursos.php");
+}
+if($_GET["editado"]!= null){
+    if($_GET["editado"]== "true"){
+        echo "<script>alert('Dados alterados com sucesso!');</script>";
+
+    }
+
+    else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao ediatar os dados!');</script>";
 
     }
     header("refresh:1;url=listarCursos.php");
@@ -100,48 +116,9 @@ if($_GET["excluido"]!= null){
     </div>
 </header>
 
-<!-- Modal -->
-<div class="modal fade" id="modalMercados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php
-                echo $_GET["id"];
-                ?>
-                <form method="post" action="cadastrarCurso.php" id="formCurso" name="formCurso" >
-                    <h2 style="color: #080808">Edição de Cursos</h2>
-                    <label style="color: #080808">Nome do Curso: </label>
-                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="nomeTxt" id="nomeTxt" />
-                    <label style="color: #080808">Categoria: </label>
-                    <div class="form-group">
-                        <select class="form-control" name="categoriaTxt">
-                            <option value="0">Selecione...</option>
-                            <?php
-                            require_once'../sga/dao/cursoDAO.php';
-                            $cursoDao = new cursoDAO();
-                            $curso = $cursoDao->visualizar();
-                            ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
-                    <a href="listaCategorias.php" >Visualizar cursos</a>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
 
-<section  class="container content-section text-center">
+
+<section  class=" text-center">
     <div class="row" id="cursos">
         <div class="col-lg-8 col-lg-offset-1">
             <div >
@@ -160,14 +137,59 @@ if($_GET["excluido"]!= null){
                     require_once "./dao/cursoDAO.php";
                     $cursoDAO = new CursoDAO();
                     $resultado = $cursoDAO->listaCursos();
+                    $i = 1;
                     foreach($resultado as $row){
                         echo "<tr>";
                       //  echo "<td>". $row["idcurso"] . "</td>";
                         echo "<td>".$row["nomecurso"]."</td>";
                         echo "<td>".$row["nomecategoria"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalCursos'>Editar</a></td>";
+                        echo "<td><a href='#'data-toggle='modal' data-target='#modalCursos".$i."'>Editar</a></td>";
                         echo "<td><a href='excluirCursos.php?id=".$row["idcurso"]."'>Excluir</a></td>";
                         echo "</tr>";
+
+                        echo "
+
+                            <div class='modal fade' id='modalCursos".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action= 'editarCurso.php' id='formCurso' name='formCurso' >
+                            <h2 style='color: #080808'>Editar Curso</h2>
+                    <label style='color: #080808'>Nome do Curso: </label>
+                    <input type='hidden' name='id' id='id' value='".$row["idcurso"]."' />
+                    <input type='text' value='".$row["nomecurso"]."' class='form-control text-uppercase' style='color: #080808' name='nomeTxt' id='nomeTxt' />
+                    <label style='color: #080808'>Categoria: </label>
+                     <div class='form-group'>
+                            <select class='form-control' name='categoriaTxt'>
+                                <option value='0'>Selecione...</option>";
+                        $k = 1;
+                        foreach($verCategoria as $linha){
+                            echo "<option value='".$k."'>".$linha["nomecategoria"]."</option>";
+                            $k++;
+                        }
+
+                        echo " </select><br><br>
+                        </div>
+                        <button type='submit' class='btn btn-primary'>Editar</button>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                 <button type='button' class='btn btn-primary'>Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+                            ";
+                        $i++;
                     }
                     ?>
                     </tbody>

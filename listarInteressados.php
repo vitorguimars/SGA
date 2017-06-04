@@ -23,6 +23,18 @@ if($_GET["excluido"]!= null){
     }
     header("refresh:1;url=listarInteressados.php");
 }
+if($_GET["editado"]!= null){
+    if($_GET["editado"]== "true"){
+        echo "<script>alert('Dados alterados com sucesso!');</script>";
+
+    }
+
+    else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao alterar os dados!');</script>";
+
+    }
+    header("refresh:1;url=listarInteressados.php");
+}
 
 ?>
 

@@ -4,16 +4,19 @@ require_once './banco/BancoPDO.php';
 require_once'./classes/curso.php';
 require_once'./classes/categoria.php';
 
-class CursoDAO{
+class CursoDAO
+{
 
     public static $conexao = null;
-    
-    function __construct() {
+
+    function __construct()
+    {
 
     }
-    
+
     //metod de inserção
-    public function inserir(Curso $curso){
+    public function inserir(Curso $curso)
+    {
         try {
             $conexao = new BancoPDO();
             $conexao = $conexao->conexao();
@@ -29,33 +32,62 @@ class CursoDAO{
             }
 
         } catch (Exception $ex) {
-            echo 'Erro: '.$ex->getMessage();
+            echo 'Erro: ' . $ex->getMessage();
 
         }
-        print_r($curso);
+        //  print_r($curso);
     }
-    public function excluirCurso(Curso $curso){
-        try{
+
+    public function excluirCurso(Curso $curso)
+    {
+        try {
             $sql = "DELETE FROM tbcursos WHERE idcurso = :id";
 
             $conexao = new BancoPDO();
             $conexao = $conexao->conexao();
 
-            if($stm = $conexao->prepare($sql)){
+            if ($stm = $conexao->prepare($sql)) {
                 $stm->bindValue(":id", $curso->getIdCurso());
                 $stm->execute();
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
-        }
-        catch(Exception $ex){
+        } catch (Exception $ex) {
             echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
         }
     }
 
-    public function listaCursos() {
+    public function editarCurso(Curso $curso)
+    {
+
+        try {
+
+
+            $sql = "UPDATE tbcursos,tbcategorias SET tbcursos.nomecurso = :nome, tbcursos.fk_tbcategoria_id = :idCategoria  WHERE tbcursos.idcurso = :id";
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+                $stm->bindValue(":id", $curso->getIdCurso());
+                $stm->bindValue(":nome", $curso->getNomeCurso());
+                $stm->bindValue(":idCategoria", $curso->getCategoria());
+
+                $stm->execute();
+                return true;
+            } else {
+                return false;
+            }
+
+
+        } catch (Exception $ex) {
+            echo 'Erro: ' . $ex->getMessage();
+        }
+
+    }
+
+    public function listaCursos()
+    {
         try {
             $sql = "SELECT idcurso, nomecurso, nomecategoria FROM `tbcategorias`, `tbcursos` WHERE tbcursos.fk_tbcategoria_id = tbcategorias.id";
 
@@ -63,7 +95,6 @@ class CursoDAO{
             $con = $con->conexao();
 
             if ($stm = $con->prepare($sql)) {
-
 
 
                 $stm->execute();
@@ -79,36 +110,62 @@ class CursoDAO{
     }
 
 
-    public function visualizar(){
-        try{
+    public function visualizar()
+    {
+        try {
             $sql = "SELECT * FROM tbcategorias";
 
             $con = new BancoPDO();
             $con = $con->conexao();
 
-            if ($stm = $con->prepare($sql)){
+            if ($stm = $con->prepare($sql)) {
                 $stm->execute();
                 $con = null;
                 $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
 
 
                 $i = 1;
-                foreach($resultado as $dados){
+                foreach ($resultado as $dados) {
                     $nomeCategoria = $dados["nomecategoria"];
 
-                    echo "<option value='$i'>".$nomeCategoria."</option>";
+                    echo "<option value='$i'>" . $nomeCategoria . "</option>";
                     $i++;
                 }
 
                 // return $this->populaCasos($stm->fetch(PDO::FETCH_OBJ));
             }
             return null;
-    
-    }catch(PDOException $ex){
+
+        } catch (PDOException $ex) {
             echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+        }
+
     }
-        
-    } 
+
+    public function visualizarModalidade()
+    {
+        try {
+            $sql = "SELECT * FROM tbcategorias;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+                return $resultado;
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
+
 
 }
 

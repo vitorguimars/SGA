@@ -453,7 +453,7 @@ if($_GET["concorrente"] != null){
                                     <h2 style="color: #080808">Cadastro de Concorrentes</h2>
                                     <label style="color: #080808">Categoria: </label>
                                     <div class="form-group">
-                                    <select class="form-control" name="categoriaTxt">
+                                    <select class="form-control" name="categoriaTxt" required="true">
                                         <option value="0">Selecione...</option>
                                         <?php
                                         require_once'../sga/dao/concorrenteDAO.php';

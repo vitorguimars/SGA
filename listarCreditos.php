@@ -112,7 +112,7 @@ if($_GET["editado"]!= null){
     </div>
 </header>
 
-<section  class=" text-center">
+<section  class="container text-center">
     <div class="row" id="creditos">
         <div class="col-lg-6 col-lg-offset-1">
             <div >

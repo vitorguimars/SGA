@@ -33,7 +33,7 @@ if($_POST["categoriaTxt"]!="" && $_POST["cursoTxt"]!="" && $_POST["empresaTxt"]!
     $concorrente->setSite($_POST["siteTxt"]);
     $concorrente->setProduto(strtoupper($_POST["prodServTxt"]));
     $concorrente->setImpacto(strtoupper($_POST["impactoTxt"]));
-    $concorrente->setObservacao(strtoupper($_POST["impactoTxt"]));
+    $concorrente->setObservacao(strtoupper($_POST["observacaoTxt"]));
 
 
 
@@ -44,9 +44,9 @@ if($_POST["categoriaTxt"]!="" && $_POST["cursoTxt"]!="" && $_POST["empresaTxt"]!
 
 
     if($concorrenteDao->editarConcorrente($concorrente)){
-        header("location:listarConcorrentes.php?editado=true");
+       // header("location:listarConcorrentes.php?editado=true");
     }else{
-        header("location:listarConcorrentes.php?editado=false");
+      //  header("location:listarConcorrentes.php?editado=false");
     }
 
 }

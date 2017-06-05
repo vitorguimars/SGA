@@ -10,7 +10,7 @@ require_once "./banco/BancoPDO.php";
 require_once "./classes/interessado.php";
 require_once "./dao/interessadoDAO.php";
 
-if($_POST["nomeTxt"]!="" && $_POST["telTxt"]!="" && $_POST["emailTxt"]!="" && $_POST["interesseTxt"]!="" && $_POST["observacaoTxt"]!=""){
+if($_POST["nomeTxt"]!="" && $_POST["telTxt"]!="" && $_POST["emailTxt"]!="" && $_POST["interesseTxt"]!="" && $_POST["interesseTxt"]!=null && $_POST["observacaoTxt"]!=""){
   
 
     $nome = $_POST["nomeTxt"];

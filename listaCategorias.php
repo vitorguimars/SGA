@@ -115,7 +115,7 @@ if($_GET["editado"]!= null){
 
 
 
-<section  class=" text-center">
+<section  class="container text-center">
     <div class="row" id="simulador">
         <div class="col-lg-6 col-lg-offset-1">
             <div >

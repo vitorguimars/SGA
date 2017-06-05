@@ -107,7 +107,7 @@ if($_GET["excluido"]!= null){
 
 
 
-<section  class=" text-center">
+<section  class="container text-center">
     <div class="row" id="concorrente">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
@@ -131,6 +131,7 @@ if($_GET["excluido"]!= null){
                     require_once "./dao/concorrenteDAO.php";
                     $concorrenteDao = new ConcorrenteDAO();
                     $resultado = $concorrenteDao->listarConcorrentes();
+                    $i = 1;
                     foreach($resultado as $row){
                         echo "<tr>";
                         //  echo "<td>". $row["id"] . "</td>";
@@ -147,6 +148,7 @@ if($_GET["excluido"]!= null){
                         echo "</tr>";
 
                         echo"
+
                         <div class='modal fade' id='modalConcorrentes' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
     <div class='modal-dialog' role='document'>
         <div class='modal-content'>

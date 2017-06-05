@@ -67,6 +67,81 @@ try{
         }
     }
 
+
+    public function editarConcorrente(Concorrente $concorrente)
+    {
+
+        try {
+
+            $sql = "UPDATE tbconcorrentes,tbcursos,tbcategorias SET tbconcorrentes.fk_tbcategorias_id = :idCategoria,tbconcorrentes.fk_tbcursos_id = :idCurso, empresa = :empresa, site = :site, produto = :produto, impacto = :impacto, obervacao = :observ  WHERE tbconcorrentes.idConcorrente = :id";
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+                $stm->bindValue(":id", $concorrente->getIdConcorrrente());
+                $stm->bindValue(":idCategoria", $concorrente->getCategoria());
+                $stm->bindValue(":idCurso", $concorrente->getCurso());
+                $stm->bindValue(":empresa", $concorrente->getNomeEmpresa());
+                $stm->bindValue(":site", $concorrente->getSite());
+                $stm->bindValue(":produto", $concorrente->getProduto());
+                $stm->bindValue(":observ", $concorrente->getObservacao());
+
+                $stm->execute();
+                return true;
+            } else {
+                return false;
+            }
+
+
+        } catch (Exception $ex) {
+            echo 'Erro: ' . $ex->getMessage();
+        }
+
+    }
+    public function visualizarModalidade()
+    {
+        try {
+            $sql = "SELECT * FROM tbcategorias;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+                return $resultado;
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+    public function visualizarCurso() {
+        try {
+            $sql = "SELECT * FROM tbcursos;";
+
+            $con = new BancoPDO();
+            $con = $con->conexao();
+
+            if ($stm = $con->prepare($sql)) {
+
+
+                $stm->execute();
+                $con = null;
+                $resultado = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+                return $resultado;
+            }
+            return null;
+        } catch (Exception $e) {
+            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+        }
+    }
+
     public function listarConcorrentes() {
         try {
             $sql = "SELECT idConcorrente, nomecategoria,nomecurso, empresa, site, produto,impacto,observacao FROM `tbconcorrentes`,`tbcategorias`, `tbcursos` WHERE tbconcorrentes.fk_tbcategorias_id = tbcategorias.id AND tbconcorrentes.fk_tbcursos_id = tbcursos.idcurso";

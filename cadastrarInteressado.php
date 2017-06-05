@@ -20,18 +20,18 @@ if($_POST["nomeTxt"]!="" && $_POST["telTxt"]!="" && $_POST["emailTxt"]!="" && $_
     $objetoInteressado = new Interessado();
     $interessadoDao = new InteressadoDAO();
 
-    $objetoInteressado->setNomeInteressado($nome);
+    $objetoInteressado->setNomeInteressado(strtoupper($nome));
     $objetoInteressado->setTelefone($tel);
     $objetoInteressado->setInteresse($interesse);
-    $objetoInteressado->setObservacao($observacao);
+    $objetoInteressado->setObservacao(strtoupper($observacao));
     $objetoInteressado->setEmail($email);
 
     //print_r($objetoInteressado);
 
    if($interessadoDao->inserir($objetoInteressado)){
-      // header("location:principal.php?interesse=true");
+       header("location:principal.php?interesse=true");
    }else{
-     //  header("location:principal.php?interesse=false");
+       header("location:principal.php?interesse=false");
    }
 
 }

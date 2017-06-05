@@ -208,7 +208,7 @@ if($_GET["editado"]!= null){
 <!-- Footer -->
 <footer>
     <div class="container text-center">
-        <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2016</p>
+        <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2017</p>
     </div>
 </footer>
 

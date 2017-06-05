@@ -41,12 +41,12 @@ if($_GET["editado"]!= null){
 
 
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+<html lang="PT-BR" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
       xmlns="http://www.w3.org/1999/html">
 
 <head>
-
-    <meta charset="UTF-8">
+    <
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -150,7 +150,7 @@ if($_GET["editado"]!= null){
                                 ?>
                             </select>
                         </div>
-                        <label style="color: #080808">Obervação: </label><br>
+                        <label style="color: #080808">observação: </label><br>
                         <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
                         <button type="submit" class="btn btn-primary">Salvar</button>
@@ -164,7 +164,7 @@ if($_GET["editado"]!= null){
     </div>
 </div>
 
-<section  class="container content-section text-center">
+<section  class=" text-center">
     <div class="row" id="interessado">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
@@ -219,7 +219,7 @@ if($_GET["editado"]!= null){
                     <label style='color: #080808'>Telefone: </label>
                     <input type='text' value='".$row["telefone"]."' class='form-control text-uppercase' style='color: #080808' name='telTxt' id='telTxt' />
                     <label style='color: #080808'>E-mail: </label>
-                    <input type='text' value='".$row["email"]."' class='form-control text-uppercase' style='color: #080808' name='emailTxt' id='emailTxt' />
+                    <input type='text' value='".$row["email"]."' class='form-control' style='color: #080808' name='emailTxt' id='emailTxt' />
                     <label style='color: #080808'>Interesse: </label>
                      <div class='form-group'>
                             <select class='form-control' name='interesseTxt'>
@@ -265,7 +265,7 @@ if($_GET["editado"]!= null){
 <!-- Footer -->
 <footer>
     <div class="container text-center">
-        <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2016</p>
+        <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2017</p>
     </div>
 </footer>
 

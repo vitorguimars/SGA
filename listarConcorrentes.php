@@ -5,6 +5,10 @@
  * Date: 23/05/2017
  * Time: 21:23
  */
+require_once'../sga/dao/concorrenteDAO.php';
+$concorrenteDao = new ConcorrenteDAO();
+$verCategoria = $concorrenteDao->visualizarModalidade();
+$verCurso = $concorrenteDao->visualizarCurso();
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 if($_GET["excluido"]!= null){
@@ -100,67 +104,10 @@ if($_GET["excluido"]!= null){
     </div>
 </header>
 
-<!-- Modal -->
-<div class="modal fade" id="modalMercados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php
-                echo $_GET["id"];
-                ?>
-                <form method="post" action="cadastrarCredito.php" id="formCredito" name="formCredito" >
-                    <h2 style="color: #080808">Edição de Concorrentes</h2>
-                    <label style="color: #080808">Categoria: </label>
-                    <div class="form-group">
-                        <select class="form-control" name="categoriaTxt">
-                            <option value="0">Selecione...</option>
-                            <?php
-                            require_once'../sga/dao/concorrenteDAO.php';
-                            $concorrenteDao = new ConcorrenteDAO();
-                            $categoria = $concorrenteDao->comboCategoria();
-                            ?>
-                        </select>
-                        <label style="color: #080808">Curso: </label>
-                        <select class="form-control" name="cursoTxt">
-                            <option value="0">Selecione...</option>
-                            <?php
-                            require_once'../sga/dao/concorrenteDAO.php';
-                            $concorrenteDao = new ConcorrenteDAO();
-                            $curso = $concorrenteDao->comboCurso();
-                            ?>
-                        </select>
-                    </div>
-                    <label style="color: #080808">Nome da Empresa: </label>
-                    <input type="text" class="form-control text-uppercase"  style="color: #080808" name="empresaTxt" id="empresaTxt" />
-                    <label style="color: #080808">Site: </label>
-                    <input type="text" class="form-control" style="color: #080808" name="siteTxt" id="siteTxt" />
-                    <label style="color: #080808">Produto/Serviço: </label>
-                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="prodServTxt" id="prodServTxt" />
-                    <label style="color: #080808">Impacto ao nosso negócio: </label>
-                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="impactoTxt" id="impactoTxt" />
-                    <label style="color: #080808">Obervação/Diferenciais: </label><br>
-                    <textarea class="text-uppercase" rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
 
 
-                    <button type="submit" class="btn btn-primary">Alterar</button><br><br>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<section  class="container content-section text-center">
+<section  class=" text-center">
     <div class="row" id="concorrente">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
@@ -195,9 +142,67 @@ if($_GET["excluido"]!= null){
                         echo "<td>".$row["produto"]."</td>";
                         echo "<td>".$row["impacto"]."</td>";
                         echo "<td>".$row["observacao"]."</td>";
-                        echo "<td><a href='#' data-toggle='modal' data-target='#modalConcorrentes'>Editar</a></td>";
+                        echo "<td><a href='#'data-toggle='modal' data-target='#modalConcorrentes".$i."'>Editar</a></td>";
                         echo "<td><a href='excluirConcorrente.php?id=".$row["idConcorrente"]."'>Excluir</a></td>";
                         echo "</tr>";
+
+                        echo"
+                        <div class='modal fade' id='modalConcorrentes' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Modal title</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+
+                <form method='post' action='editarConcorrente.php.php' id='formConcorrente' name='formConcorrente' >
+                    <h2 style='color: #080808'>Editar de Concorrentes</h2>
+                    <label style='color: #080808'>Categoria: </label>
+                    <div class='form-group'>
+                    <select class='form-control' name='categoriaTxt'>
+                                <option value='0'>Selecione...</option>";
+                        $k = 1;
+                        foreach($verCategoria as $linha){
+                            echo "<option value='".$k."'>".$linha["nomecategoria"]."</option>";
+                            $k++;
+                        }
+                        echo " </select><br><br>
+
+                    <label style='color: #080808'>Curso: </label>
+                    <select class='form-control' name='cursoTxt'>
+                                <option value='0'>Selecione...</option>";
+                        $j = 1;
+                        foreach($verCurso as $linhaCurso){
+                            echo "<option value='".$j."'>".$linhaCurso["nomecurso"]."</option>";
+                            $j++;
+                        }
+                        echo " </select><br><br>
+                         <label style='color: #080808'>Nome da Empresa: </label>
+            <input type='text' class='form-control text-uppercase'  style='color: #080808' name='empresaTxt' id='empresaTxt' />
+            <label style='color: #080808'>Site: </label>
+            <input type='text' class='form-control' style='color: #080808' name='siteTxt' id='siteTxt' />
+            <label style='color: #080808'>Produto: </label>
+            <input type='text' class='form-control text-uppercase' style='color: #080808' name='prodServTxt' id='prodServTxt' />
+            <label style='color: #080808'>Impacto: </label>
+            <input type='text' class='form-control text-uppercase' style='color: #080808' name='impactoTxt' id='impactoTxt' />
+            <label style='color: #080808'>Diferenciais: </label><br>
+            <textarea class='text-uppercase' rows='4' cols='50' name='observacaoTxt' id='observacaoTxt' style='color: #080808'></textarea><br><br>
+
+            <button type='submit' class='btn btn-primary'>Editar</button><br><br>
+            </form>
+        </div>
+        <div class='modal-footer'>
+            <!-- <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+             <button type='button' class='btn btn-primary'>Save changes</button> -->
+        </div>
+    </div>
+    </div>
+    </div>
+
+                        ";
                     }
                     ?>
                     </tbody>
@@ -216,7 +221,7 @@ if($_GET["excluido"]!= null){
 <!-- Footer -->
 <footer>
     <div class="container text-center">
-        <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2016</p>
+        <p>Copyright &copy;<a href="http://www.senairs.com.br/faculdade" </a>www.senairs.com.br/faculdade - 2017</p>
     </div>
 </footer>
 

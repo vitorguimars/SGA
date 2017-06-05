@@ -53,7 +53,7 @@ if($_GET["editado"]!= null){
     <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
 
-    <title>SGA - Sitema de Gest„o de Atendimentos</title>
+    <title>SGA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -124,7 +124,7 @@ if($_GET["editado"]!= null){
                     <tr>
 
                         <th>Nome Categoria</th>
-                        <th>Valor Parametro</th>
+                        <th>Valor Par√¢metro</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>

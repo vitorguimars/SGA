@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * Created by PhpStorm.
  * User: Note02
@@ -56,7 +56,7 @@ if($_GET["editado"]!= null){
     <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
 
-    <title>SGA - Sitema de Gestão de Atendimentos</title>
+    <title>SGA</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -116,53 +116,7 @@ if($_GET["editado"]!= null){
     </div>
 </header>
 
-<!-- Modal -->
-<div class="modal fade" id="modalCasos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <?php
-                echo $_GET["id"];
-                ?>
-                <form method="post" action="cadastrarCaso.php" id="formCaso" name="formCaso" >
-                    <form method="post" action="cadastrarInteressado.php" id="formInteressado" name="formInteressado" >
-                        <h2 style="color: #080808">Edição de Interessados</h2>
-                        <label style="color: #080808">Nome: </label>
-                        <input type="text" class="form-control text-uppercase" style="color: #080808" name="nomeTxt" id="nomeTxt" />
-                        <label style="color: #080808">Telefone: </label>
-                        <input type="text" class="form-control"  style="color: #080808" name="telTxt" id="telTxt" />
-                        <label style="color: #080808">E-mail: </label>
-                        <input type="text" class="form-control"  style="color: #080808" name="emailTxt" id="emailTxt" /><br><br>
-                        <label style="color: #080808">Interesse: </label>
-                        <div class="form-group">
-                            <select class="form-control" name="interesseTxt">
-                                <option value="0">Selecione...</option>
-                                <?php
-                                require_once'../sga/dao/interessadoDAO.php';
-                                $interessadoDao = new InteressadoDAO();
-                                $interessado = $interessadoDao->visualizar();
-                                ?>
-                            </select>
-                        </div>
-                        <label style="color: #080808">observação: </label><br>
-                        <textarea rows="4" cols="50" name="observacaoTxt" id="observacaoTxt" style="color: #080808"></textarea><br><br>
 
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
-            </div>
-            <div class="modal-footer">
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button> -->
-            </div>
-        </div>
-    </div>
-</div>
 
 <section  class=" text-center">
     <div class="row" id="interessado">
@@ -176,7 +130,7 @@ if($_GET["editado"]!= null){
                         <th>Telefone</th>
                         <th>E-mail</th>
                         <th>Interesse - Curso</th>
-                        <th>Observação</th>
+                        <th>ObservaÃ§Ã£o</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
@@ -232,7 +186,7 @@ if($_GET["editado"]!= null){
 
                            echo " </select><br><br>
                         </div>
-                        <label style='color: #080808'>Observação: </label>
+                        <label style='color: #080808'>ObservaÃ§Ã£o: </label><br><br>
                         <textarea rows='4' cols='50' name='observacaoTxt' id='observacaoTxt' class='text-uppercase' style='color: #080808'>". $row["observacao"] ."</textarea><br><br>
                     <button type='submit' class='btn btn-primary'>Editar</button>
                 </form>

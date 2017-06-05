@@ -599,7 +599,7 @@ if($_GET["concorrente"] != null){
                     <p>
                     <ul class="col-lg-8 col-lg-offset-2">
                         <li>
-                            <i><u>Formas de Ingresso : </i></u> Vestibular, Transferência e diplomdados.
+                            <i><u>Formas de Ingresso : </i></u> Vestibular, Transferência e diplomados.
                         </li>
                         <li>
                            <i><u>Seleção para Ingresso : </i></u> Redação (mediante agendamento).

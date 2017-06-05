@@ -2,6 +2,32 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/cadastrarCaso.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarCategoria.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarConcorrente.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarCredito.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarCurso.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarInteressado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarMercado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastrarRamal.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarCaso.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarCategoria.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarConcorrente.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarCredito.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarCurso.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/editarInteressado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarMercado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/editarRamal.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirCaso.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirCategorias.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirConcorrente.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirCreditos.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirCursos.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirInteressado.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirMercados.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/excluirRamais.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/listaCasos.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/listaMercados.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/listarCreditos.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/listarCursos.php" charset="UTF-8" />
   </component>
 </project>

@@ -118,7 +118,7 @@ if($_GET["editado"]!= null){
     <div class="row" id="simulador">
         <div class="col-lg-6 col-lg-offset-1">
             <div >
-                <table class="table table-bordered table-responsive">
+                <table  class="table table-bordered table-responsive">
 
                     <tr>
 

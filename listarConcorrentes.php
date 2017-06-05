@@ -119,9 +119,9 @@ if($_GET["excluido"]!= null){
                         <th>Curso</th>
                         <th>Empresa</th>
                         <th>Site</th>
-                        <th>Produto/Servi�o</th>
-                        <th>Impacto/Negocio</th>
-                        <th>Observa��o</th>
+                        <th>Produto/Serviço</th>
+                        <th>Impacto/Negócio</th>
+                        <th>Observação</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
@@ -158,8 +158,8 @@ if($_GET["excluido"]!= null){
             </div>
             <div class='modal-body'>
 
-                <form method='post' action='editarConcorrente.php.php' id='formConcorrente' name='formConcorrente' >
-                    <h2 style='color: #080808'>Editar de Concorrentes</h2>
+                <form method='post' action='editarConcorrente.php' id='formConcorrente' name='formConcorrente' >
+                    <h2 style='color: #080808'>Edição de Concorrentes</h2>
                     <label style='color: #080808'>Categoria: </label>
                     <div class='form-group'>
                     <select class='form-control' name='categoriaTxt'>
@@ -184,11 +184,11 @@ if($_GET["excluido"]!= null){
             <input type='text' class='form-control text-uppercase'  style='color: #080808' name='empresaTxt' id='empresaTxt' />
             <label style='color: #080808'>Site: </label>
             <input type='text' class='form-control' style='color: #080808' name='siteTxt' id='siteTxt' />
-            <label style='color: #080808'>Produto: </label>
+            <label style='color: #080808'>Produto/Serviço </label>
             <input type='text' class='form-control text-uppercase' style='color: #080808' name='prodServTxt' id='prodServTxt' />
-            <label style='color: #080808'>Impacto: </label>
+            <label style='color: #080808'>Impacto/Negócio: </label>
             <input type='text' class='form-control text-uppercase' style='color: #080808' name='impactoTxt' id='impactoTxt' />
-            <label style='color: #080808'>Diferenciais: </label><br>
+            <label style='color: #080808'>Observação/Diferenciais: </label><br>
             <textarea class='text-uppercase' rows='4' cols='50' name='observacaoTxt' id='observacaoTxt' style='color: #080808'></textarea><br><br>
 
             <button type='submit' class='btn btn-primary'>Editar</button><br><br>

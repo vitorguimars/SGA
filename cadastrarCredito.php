@@ -22,7 +22,7 @@ if ($_POST["creditoTxt"]!= ""){
     //print_r($objetoCredito);
 
     if($creditoDao->inserir($objetoCredito)== true){
-        echo  $objetoCredito->getNumCredito(). " crÈditos cadastrado com sucesso!";
+        echo  $objetoCredito->getNumCredito(). " cr√©ditos cadastrado com sucesso!";
        header("location:principal.php?credito=true");
     }else{
         header("location:principal.php?credito=false");

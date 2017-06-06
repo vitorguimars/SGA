@@ -23,6 +23,8 @@ if($_POST["categoriaTxt"]!="" && $_POST["cursoTxt"]!="" && $_POST["empresaTxt"]!
     $observ = $_POST["observacaoTxt"];
 
 
+
+
     $concorrente = new Concorrente();
     $concorrenteDao = new ConcorrenteDAO();
 
@@ -40,14 +42,28 @@ if($_POST["categoriaTxt"]!="" && $_POST["cursoTxt"]!="" && $_POST["empresaTxt"]!
 
 
     //  print_r($curso);
-
-
-
-    if($concorrenteDao->editarConcorrente($concorrente)){
-       // header("location:listarConcorrentes.php?editado=true");
-    }else{
-      //  header("location:listarConcorrentes.php?editado=false");
+    if($concorrente->getCategoria() != 0){
+        if($concorrente->getCurso() != 0){
+            if($concorrenteDao->editarConcorrente($concorrente)){
+                 header("location:listarConcorrentes.php?editado=true");
+            }else{
+                header("location:listarConcorrentes.php?editado=false");
+            }
+        }
+        else{
+            echo "Selecione o campo de curso!<br/>Redirecionando...";
+            header("refresh:3;url=listarConcorrentes.php");
+        }
     }
+    else{
+        echo "Selecione o campo de categoria!<br/>Redirecionando...";
+        header("refresh:3;url=listarConcorrentes.php");
+
+    }
+
+
+
+
 
 }
 ?>

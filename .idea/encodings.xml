@@ -9,6 +9,7 @@
     <file url="file://$PROJECT_DIR$/cadastrarInteressado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cadastrarMercado.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cadastrarRamal.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dao/categoriaDAO.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/editarCaso.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/editarCategoria.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/editarConcorrente.php" charset="UTF-8" />

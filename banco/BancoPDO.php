@@ -19,7 +19,7 @@ class BancoPDO{
 
     try{
      
-           $this->con = new PDO('mysql:host=localhost;port=3306;dbname=dbsga;', $usuario, $senha);
+           $this->con = new PDO('mysql:host=localhost;port=3306;dbname=dbsga;charset=utf8', $usuario, $senha);
 
           // para que os erros de exceção sejam obrigatoriamente mostrados
           $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

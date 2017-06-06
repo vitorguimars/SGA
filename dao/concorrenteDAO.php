@@ -73,7 +73,7 @@ try{
 
         try {
 
-            $sql = "UPDATE tbconcorrentes,tbcursos,tbcategorias SET tbconcorrentes.fk_tbcategorias_id = :idCategoria,tbconcorrentes.fk_tbcursos_id = :idCurso, empresa = :empresa, site = :site, produto = :produto, impacto = :impacto, obervacao = :observ  WHERE tbconcorrentes.idConcorrente = :id";
+            $sql = "UPDATE tbconcorrentes SET tbconcorrentes.fk_tbcategorias_id = :idCategoria,tbconcorrentes.fk_tbcursos_id = :idCurso, empresa = :empresa, site = :site, produto = :produto, impacto = :impacto, observacao = :observ  WHERE tbconcorrentes.idConcorrente = :id";
             $con = new BancoPDO();
             $con = $con->conexao();
 
@@ -85,6 +85,7 @@ try{
                 $stm->bindValue(":site", $concorrente->getSite());
                 $stm->bindValue(":produto", $concorrente->getProduto());
                 $stm->bindValue(":observ", $concorrente->getObservacao());
+                $stm->bindValue(":impacto", $concorrente->getImpacto());
 
                 $stm->execute();
                 return true;

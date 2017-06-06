@@ -160,7 +160,7 @@ if($_GET["editado"]!= null){
                             <h2 style='color: #080808'>Editar Casos</h2>
                     <label style='color: #080808'>Nome do Caso: </label>
                     <input type='hidden' name='id' id='id' value='".$row["id"]."' />
-                    <input type='text' value='".$row["nomecaso"]."' style='color: #080808' name='casoTxt' id='casoTxt' /><br><br>
+                    <input type='text'class='form-control text-uppercase' value='".$row["nomecaso"]."' style='color: #080808' name='casoTxt' id='casoTxt' /><br><br>
                     <button type='submit' class='btn btn-primary'>Editar</button>
                 </form>
             </div>

@@ -19,7 +19,7 @@ class CategoriaDAO{
 
     }
 
-    //metodo inserção
+    //metodo inserÃ§Ã£o
     public function inserir(Categoria $categoria){
 
         try{
@@ -57,7 +57,7 @@ class CategoriaDAO{
             }
         }
         catch(Exception $ex){
-            echo "MENSAGEM DE ERRO<br/> Código: " . $ex->getMessage();
+            echo "MENSAGEM DE ERRO<br/> CÃ³digo: " . $ex->getMessage();
         }
     }
 
@@ -107,7 +107,7 @@ class CategoriaDAO{
             }
             return null;
         } catch (Exception $e) {
-            echo "MENSAGEM DE ERRO<br/> Código: " . $e->getMessage();
+            echo "MENSAGEM DE ERRO<br/> CÃ³digo: " . $e->getMessage();
         }
     }
     public function visualizar(){
@@ -129,7 +129,7 @@ class CategoriaDAO{
 
     public function vSemestral_20(){
         try{
-            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÇÃO'";
+            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÃ‡ÃƒO'";
 
             $con = new BancoPDO();
             $con = $con->conexao();
@@ -153,7 +153,7 @@ class CategoriaDAO{
 
     public function vMensal_20(){
         try{
-            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÇÃO'";
+            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÃ‡ÃƒO'";
 
             $con = new BancoPDO();
             $con = $con->conexao();
@@ -171,7 +171,7 @@ class CategoriaDAO{
 
     public function vSemestral(){
         try{
-            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÇÃO'";
+            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÃ‡ÃƒO'";
 
             $con = new BancoPDO();
             $con = $con->conexao();
@@ -189,7 +189,7 @@ class CategoriaDAO{
 
     public function vMensal(){
         try{
-            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÇÃO'";
+            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÃ‡ÃƒO'";
 
             $con = new BancoPDO();
             $con = $con->conexao();
@@ -208,7 +208,7 @@ class CategoriaDAO{
 
     public function getVMensal(){
         try{
-            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÇÃO'";
+            $sql = "SELECT valorparametro FROM tbcategorias WHERE nomecategoria = 'GRADUAÃ‡ÃƒO'";
 
             $con = new BancoPDO();
             $con = $con->conexao();

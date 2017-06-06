@@ -31,13 +31,19 @@ if($_POST["nomeTxt"]!="" && $_POST["telTxt"]!="" && $_POST["emailTxt"]!="" && $_
 
     //print_r($objetoInteressado);
 
-
-
-    if($interessadoDao->editarInteressado($interessado)){
-        header("location:listarInteressados.php?editado=true");
-    }else{
-        header("location:listarInteressados.php?editado=false");
+    if($interessado->getInteresse() != 0){
+        if($interessadoDao->editarInteressado($interessado)){
+            header("location:listarInteressados.php?editado=true");
+        }else{
+            header("location:listarInteressados.php?editado=false");
+        }
     }
+    else{
+        echo "Selecione o campo de interesse!<br/>Redirecionando...";
+        header("refresh:2;url=listarInteressados.php");
+    }
+
+
 
 }
 

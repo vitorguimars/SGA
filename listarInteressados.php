@@ -45,7 +45,7 @@ if($_GET["editado"]!= null){
       xmlns="http://www.w3.org/1999/html">
 
 <head>
-    <
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -133,6 +133,7 @@ if($_GET["editado"]!= null){
                         <th>Observação</th>
                         <th>Editar</th>
                         <th>Excluir</th>
+
                     </tr>
 
                     <tbody>

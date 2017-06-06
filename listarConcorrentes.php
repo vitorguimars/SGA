@@ -24,6 +24,19 @@ if($_GET["excluido"]!= null){
     header("refresh:1;url=listarConcorrentes.php");
 }
 
+if($_GET["editado"]!= null){
+    if($_GET["editado"]== "true"){
+        echo "<script>alert('Dados alterados com sucesso!');</script>";
+
+    }
+
+    else if($_GET["editado"]== "false"){
+        echo "<script>alert('Erro ao alterar dados!');</script>";
+
+    }
+    header("refresh:1;url=listarConcorrentes.php");
+}
+
 ?>
 
 
@@ -149,7 +162,7 @@ if($_GET["excluido"]!= null){
 
                         echo"
 
-                        <div class='modal fade' id='modalConcorrentes' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                        <div class='modal fade' id='modalConcorrentes".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
     <div class='modal-dialog' role='document'>
         <div class='modal-content'>
             <div class='modal-header'>
@@ -183,15 +196,16 @@ if($_GET["excluido"]!= null){
                         }
                         echo " </select><br><br>
                          <label style='color: #080808'>Nome da Empresa: </label>
-            <input type='text' class='form-control text-uppercase'  style='color: #080808' name='empresaTxt' id='empresaTxt' />
+            <input type='text' class='form-control text-uppercase'  style='color: #080808' name='empresaTxt' id='empresaTxt' value='".$row["empresa"]."' />
             <label style='color: #080808'>Site: </label>
-            <input type='text' class='form-control' style='color: #080808' name='siteTxt' id='siteTxt' />
+            <input type='hidden' name='id' id='id' value='".$row["idConcorrente"]."' />
+            <input type='text' class='form-control' style='color: #080808' name='siteTxt' id='siteTxt' value='".$row["site"]."'/>
             <label style='color: #080808'>Produto/Serviço </label>
-            <input type='text' class='form-control text-uppercase' style='color: #080808' name='prodServTxt' id='prodServTxt' />
+            <input type='text' class='form-control text-uppercase' style='color: #080808' name='prodServTxt' id='prodServTxt' value='".$row["produto"]."' />
             <label style='color: #080808'>Impacto/Negócio: </label>
-            <input type='text' class='form-control text-uppercase' style='color: #080808' name='impactoTxt' id='impactoTxt' />
+            <input type='text' class='form-control text-uppercase' style='color: #080808' name='impactoTxt' id='impactoTxt' value='".$row["impacto"]."'/>
             <label style='color: #080808'>Observação/Diferenciais: </label><br>
-            <textarea class='text-uppercase' rows='4' cols='50' name='observacaoTxt' id='observacaoTxt' style='color: #080808'></textarea><br><br>
+            <textarea class='text-uppercase' rows='4' cols='50' name='observacaoTxt' id='observacaoTxt' style='color: #080808'>".$row["observacao"]."</textarea><br><br>
 
             <button type='submit' class='btn btn-primary'>Editar</button><br><br>
             </form>
@@ -205,6 +219,7 @@ if($_GET["excluido"]!= null){
     </div>
 
                         ";
+                        $i++;
                     }
                     ?>
                     </tbody>

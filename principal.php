@@ -240,7 +240,7 @@ if($_GET["concorrente"] != null){
                                 <form method="post" action="cadastrarCaso.php" id="formCaso" name="formCaso" >
                                     <h2 style="color: #080808">Cadastro de Casos</h2>
                                     <label style="color: #080808">Nome do Caso: </label>
-                                    <input type="text" style="color: #080808" name="casoTxt" id="casoTxt" /><br><br>
+                                    <input type="text" class="form-control text-uppercase" style="color: #080808" name="casoTxt" id="casoTxt" /><br><br>
                                     <button type="submit" class="btn btn-primary">Cadastrar</button><br><br>
                                     <a href="listaCasos.php" >Visualizar casos</a>
                                 </form>
@@ -579,9 +579,30 @@ if($_GET["concorrente"] != null){
             <div class="download-section">
                 <div class="container">
                     <div class="col-lg-8 col-lg-offset-2">
-                        <h2>Protfolio</h2>
-                        <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-                        <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                        <h2>Protfolio de Cursos</h2><br>
+                        <p>Graduação:</p>
+                        <p><ul class="col-lg-8 col-lg-offset-2">
+                            <li>
+                                <i>Análise e Desenvolvimento de Sistemas </i>
+                            </li>
+                            <li>
+                                <i>Automação Industrial </i>
+                            </li>
+                            <li>
+                                <i>Redes de Computadores </i>
+                            </li>
+                            <li>
+                                <i>Sistemas de Telecom </i>
+                            </li>
+                            <li>
+                                <i>Sistemas Embarcados </i>
+                            </li>
+                            </ul>
+
+
+
+                        </p>
+
                     </div>
                 </div>
             </div>
@@ -592,6 +613,7 @@ if($_GET["concorrente"] != null){
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Informações Gerais</h2>
+
 
                     <p>Cursos Superiores chancelados e direcionados pelas demandas dos nossos empresários industriais, conceito 4 MEC,
                     prova única de redação, laboratórios de primeira linha, estacionamento gratuito e, obviamente, toda

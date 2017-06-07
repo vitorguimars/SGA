@@ -27,7 +27,7 @@ class BancoPDO{
     }catch(PDOEXCEPTION $e){
       echo "Erro: " .$e->getMessage();
 
-      echo $con->erroInfo();
+      echo $this->con->errorInfo();
 
     }
 

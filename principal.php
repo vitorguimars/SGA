@@ -751,7 +751,8 @@ if($_GET["concorrente"] != null){
                                <td>Valor Normal</td>
                                 <td id="valor">4</td>
                                 <td>0,00%</td>
-                                <td id="valor1a6"><?php
+                                <td id="valor1a6">
+                                    <?php
                                     require_once '../sga/dao/descontoDAO.php';
                                     $descontoDao = new DescontoDAO();
                                     $desc1 = $descontoDao->vParcela1a6();
@@ -768,7 +769,6 @@ if($_GET["concorrente"] != null){
                         </script>
 
                     ";
-
                                     ?></td>
                                 <td id="tParcelado">
                                     <script>
@@ -899,15 +899,6 @@ if($_GET["concorrente"] != null){
                                         else{
                                             echo "0%";
                                         }
-
-
-
-
-
-
-
-
-
 
                                     ?>
                                 </td>
